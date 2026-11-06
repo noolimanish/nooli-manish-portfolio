@@ -148,114 +148,142 @@ function ParticleAvatar({ imageSrc }) {
     canvas.height = height;
 
     let particles = [];
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const step = isMobile ? 5 : 4;
+
     const img = new Image();
-    img.crossOrigin = "anonymous";
     img.src = imageSrc;
 
-    img.onload = () => {
-      const offCanvas = document.createElement("canvas");
-      const offCtx = offCanvas.getContext("2d", { willReadFrequently: true });
-      offCanvas.width = width;
-      offCanvas.height = height;
+    const initParticles = () => {
+      try {
+        const offCanvas = document.createElement("canvas");
+        const offCtx = offCanvas.getContext("2d", { willReadFrequently: true });
+        offCanvas.width = width;
+        offCanvas.height = height;
 
-      const hRatio = width / img.width;
-      const vRatio = height / img.height;
-      const ratio = Math.min(hRatio, vRatio) * 0.88;
-      const shiftX = (width - img.width * ratio) / 2;
-      const shiftY = (height - img.height * ratio) / 2;
+        const hRatio = width / img.width;
+        const vRatio = height / img.height;
+        const ratio = Math.min(hRatio, vRatio) * 0.88;
+        const shiftX = (width - img.width * ratio) / 2;
+        const shiftY = (height - img.height * ratio) / 2;
 
-      offCtx.drawImage(
-        img,
-        0,
-        0,
-        img.width,
-        img.height,
-        shiftX,
-        shiftY,
-        img.width * ratio,
-        img.height * ratio
-      );
-      const imgData = offCtx.getImageData(0, 0, width, height).data;
-      const step = 4;
-      particles = [];
+        offCtx.drawImage(
+          img,
+          0,
+          0,
+          img.width,
+          img.height,
+          shiftX,
+          shiftY,
+          img.width * ratio,
+          img.height * ratio
+        );
+        const imgData = offCtx.getImageData(0, 0, width, height).data;
+        particles = [];
 
-      for (let y = 0; y < height; y += step) {
-        for (let x = 0; x < width; x += step) {
-          const idx = (y * width + x) * 4;
-          const r = imgData[idx];
-          const g = imgData[idx + 1];
-          const b = imgData[idx + 2];
-          const a = imgData[idx + 3];
-          const brightness = (r + g + b) / 3;
+        for (let y = 0; y < height; y += step) {
+          for (let x = 0; x < width; x += step) {
+            const idx = (y * width + x) * 4;
+            const r = imgData[idx];
+            const g = imgData[idx + 1];
+            const b = imgData[idx + 2];
+            const a = imgData[idx + 3];
+            const brightness = (r + g + b) / 3;
 
-          if (a > 30 && brightness > 8) {
-            particles.push({
-              originX: x,
-              originY: y,
-              x: x + (Math.random() - 0.5) * 12,
-              y: y + (Math.random() - 0.5) * 12,
-              vx: 0,
-              vy: 0,
-              size: Math.random() * 1.4 + 0.8,
-              color: `rgba(${r}, ${g}, ${b}, ${(a / 255) * 0.95})`,
-              ease: 0.07 + Math.random() * 0.03,
-              friction: 0.83,
-              repelForce: 85 + Math.random() * 40,
-              floatOffset: Math.random() * Math.PI * 2,
-            });
+            if (a > 30 && brightness > 8) {
+              particles.push({
+                originX: x,
+                originY: y,
+                x: x + (Math.random() - 0.5) * 12,
+                y: y + (Math.random() - 0.5) * 12,
+                vx: 0,
+                vy: 0,
+                size: isMobile ? Math.random() * 1.5 + 0.9 : Math.random() * 1.4 + 0.8,
+                color: `rgba(${r}, ${g}, ${b}, ${(a / 255) * 0.95})`,
+                ease: 0.07 + Math.random() * 0.03,
+                friction: 0.83,
+                repelForce: 85 + Math.random() * 40,
+                floatOffset: Math.random() * Math.PI * 2,
+              });
+            }
           }
         }
+
+        let frameCount = 0;
+        const render = () => {
+          ctx.clearRect(0, 0, width, height);
+          frameCount += 0.02;
+
+          const mx = mouseRef.current.x;
+          const my = mouseRef.current.y;
+          const radius = mouseRef.current.radius;
+          const hasMouse = mx > -1000 && my > -1000;
+
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+
+            if (hasMouse) {
+              const dx = mx - p.x;
+              const dy = my - p.y;
+              const dist = Math.hypot(dx, dy);
+              if (dist < radius) {
+                const angle = Math.atan2(dy, dx);
+                const force = (radius - dist) / radius;
+                const push = force * p.repelForce;
+                p.vx -= Math.cos(angle) * push;
+                p.vy -= Math.sin(angle) * push;
+              }
+            }
+
+            const floatY = Math.sin(frameCount + p.floatOffset) * 0.45;
+            const ax = (p.originX - p.x) * p.ease;
+            const ay = (p.originY + floatY - p.y) * p.ease;
+            p.vx = (p.vx + ax) * p.friction;
+            p.vy = (p.vy + ay) * p.friction;
+            p.x += p.vx;
+            p.y += p.vy;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+          }
+          animationFrameId = requestAnimationFrame(render);
+        };
+        render();
+      } catch (err) {
+        console.error("ParticleAvatar init error:", err);
       }
-
-      let frameCount = 0;
-      const render = () => {
-        ctx.clearRect(0, 0, width, height);
-        frameCount += 0.02;
-
-        const mx = mouseRef.current.x;
-        const my = mouseRef.current.y;
-        const radius = mouseRef.current.radius;
-
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-          const dx = mx - p.x;
-          const dy = my - p.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < radius) {
-            const angle = Math.atan2(dy, dx);
-            const force = (radius - dist) / radius;
-            const push = force * p.repelForce;
-            p.vx -= Math.cos(angle) * push;
-            p.vy -= Math.sin(angle) * push;
-          }
-          const floatY = Math.sin(frameCount + p.floatOffset) * 0.45;
-          const ax = (p.originX - p.x) * p.ease;
-          const ay = (p.originY + floatY - p.y) * p.ease;
-          p.vx = (p.vx + ax) * p.friction;
-          p.vy = (p.vy + ay) * p.friction;
-          p.x += p.vx;
-          p.y += p.vy;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.fill();
-        }
-        animationFrameId = requestAnimationFrame(render);
-      };
-      render();
     };
+
+    if (img.complete && img.naturalWidth !== 0) {
+      initParticles();
+    } else {
+      img.onload = initParticles;
+    }
+
     return () => cancelAnimationFrame(animationFrameId);
   }, [imageSrc]);
 
-  const handlePointerMove = (e) => {
+  const updatePointer = (clientX, clientY) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    mouseRef.current.x = (e.clientX - rect.left) * scaleX;
-    mouseRef.current.y = (e.clientY - rect.top) * scaleY;
+    mouseRef.current.x = (clientX - rect.left) * scaleX;
+    mouseRef.current.y = (clientY - rect.top) * scaleY;
   };
+
+  const handlePointerMove = (e) => {
+    if (e.pointerType === "touch") return; // Keep mobile scroll smooth
+    updatePointer(e.clientX, e.clientY);
+  };
+
+  const handlePointerDown = (e) => {
+    updatePointer(e.clientX, e.clientY);
+  };
+
   const handlePointerLeave = () => {
     mouseRef.current.x = -2000;
     mouseRef.current.y = -2000;
@@ -273,6 +301,7 @@ function ParticleAvatar({ imageSrc }) {
       <canvas
         ref={canvasRef}
         onPointerMove={handlePointerMove}
+        onPointerDown={handlePointerDown}
         onPointerLeave={handlePointerLeave}
         className="relative z-20 cursor-crosshair drop-shadow-[0_0_30px_rgba(20,184,166,0.3)] touch-none max-w-full"
         style={{ width: "420px", height: "460px" }}
