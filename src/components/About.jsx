@@ -44,9 +44,9 @@ export default function About() {
   const engineeringPillars = {
     genai: {
       id: "genai",
-      title: "Autonomous AI & Intelligent Workflows",
+      title: "Autonomous AI",
       allocation: "40%",
-      badge: "Creative & Agentic AI",
+      badge: "Agentic AI & Systems",
       icon: "🧠",
       summary:
         "Building autonomous reasoning loops and targeted vector retrieval that eliminate generic LLM hallucinations and enforce real domain constraints.",
@@ -55,15 +55,15 @@ export default function About() {
         "Vector search injecting structural rules for narrative continuity in CineScript",
         "Secondary critic reviewer loops guaranteeing a 99.4% constraint pass rate",
       ],
-      shippedIn: "CineScript Studio & Internal AI",
+      shippedIn: "CineScript Studio & AI Labs",
       metric: "Top-3 Rule Injection • 18ms Latency",
       animationType: "nodes",
     },
     backend: {
       id: "backend",
-      title: "Python Backends & AI at AMD",
+      title: "Python Backend & AI",
       allocation: "35%",
-      badge: "Enterprise Production",
+      badge: "Enterprise Backend",
       icon: "⚙️",
       summary:
         "Engineering high-throughput Python validation pipelines, Django/SQL telemetry systems, and AI-assisted triage microservices for AMD silicon workflows.",
@@ -78,18 +78,18 @@ export default function About() {
     },
     uiux: {
       id: "uiux",
-      title: "Creative UI/UX & Business Problem Solving",
+      title: "Creativity Corner",
       allocation: "25%",
-      badge: "Creative Strategy & Product Design",
+      badge: "Product Design & UI/UX",
       icon: "🎨",
       summary:
-        "I'm an intensely creative person who loves deconstructing business challenges into frictionless human interfaces. I craft full UI/UX design systems, write in-depth design case studies on Medium, and solve real user pain points with thoughtful visual psychology.",
+        "Solving real user pain points through thoughtful visual design. I craft clean UI/UX systems, write in-depth product design case studies on Medium, and build intuitive human interfaces.",
       deliverables: [
         "Publishing in-depth UI/UX teardowns and product design case studies on Medium",
         "Deconstructing complex business friction into intuitive, high-conversion visual interfaces",
         "Designing responsive design systems, interactive prototypes, and motion aesthetics in Figma",
       ],
-      shippedIn: "Medium Case Studies & Behance Portfolio",
+      shippedIn: "Medium Articles & Behance Portfolio",
       metric: "Case Studies • Medium • Behance",
       animationType: "design",
       behanceUrl: "https://www.behance.net",
@@ -119,7 +119,7 @@ export default function About() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-mono uppercase tracking-widest"
           >
             <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
-            <span>ENGINEER PROFILE // IDENTITY & ORIGINS</span>
+            <span>ABOUT ME // BACKGROUND</span>
           </motion.div>
 
           {/* Big Bold Impressive Headline */}
@@ -133,8 +133,8 @@ export default function About() {
 
             <p className="text-lg sm:text-2xl font-['Syne',sans-serif] font-bold text-slate-300 tracking-wide">
               AI & Python Backend Engineer{" "}
-              <span className="text-teal-400 font-mono text-xs sm:text-sm font-medium px-2 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/30">
-                ~2 YOE
+              <span className="text-teal-400 font-mono text-xs sm:text-sm font-medium px-2.5 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/30">
+                2 Years Experience
               </span>
             </p>
           </div>
@@ -181,7 +181,7 @@ export default function About() {
                 <span>📍</span> Hyderabad, India
               </span>
               <span className="px-2.5 py-1 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-300 font-semibold flex items-center gap-1">
-                <span>💼</span> ~2 YOE Software Engineer
+                <span>💼</span> 2 Years Experience
               </span>
               <span className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/10 flex items-center gap-1">
                 <span>🎬</span> Film & Screenwriting
@@ -317,10 +317,10 @@ export default function About() {
             <div>
               <span className="text-[11px] font-mono text-cyan-300 uppercase tracking-widest font-bold flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                <span>ACTIVE FOCUS ALLOCATION</span>
+                <span>TIME ALLOCATION</span>
               </span>
               <h3 className="text-xl sm:text-2xl font-heading font-black text-white tracking-tight mt-0.5">
-                Where I Spend My Engineering Time
+                Where I Spend My Time
               </h3>
             </div>
 
@@ -329,23 +329,31 @@ export default function About() {
             </span>
           </div>
 
-          {/* Interactive Compact Pill Switcher */}
-          <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-[#031518]/90 border border-teal-500/25 max-w-fit backdrop-blur-xl">
+          {/* Interactive Responsive Pill Switcher */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 rounded-2xl bg-[#031518]/90 border border-teal-500/25 w-full max-w-3xl backdrop-blur-xl">
             {Object.values(engineeringPillars).map((p) => {
               const isSelected = activePillarId === p.id;
               return (
                 <button
                   key={p.id}
                   onClick={() => setActivePillarId(p.id)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold transition-all duration-200 flex items-center gap-2 ${
+                  className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold transition-all duration-200 flex items-center justify-between text-left ${
                     isSelected
                       ? "bg-gradient-to-r from-teal-400 to-cyan-400 text-black shadow-[0_0_15px_rgba(0,243,255,0.35)]"
                       : "text-slate-400 hover:text-white hover:bg-white/[0.04]"
                   }`}
                 >
-                  <span>{p.icon}</span>
-                  <span>{p.title}</span>
-                  <span className={`text-[10px] px-1.5 py-0.2 rounded-md ${isSelected ? "bg-black/20 text-black font-black" : "text-teal-400 bg-white/5"}`}>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm shrink-0">{p.icon}</span>
+                    <span className="font-semibold text-xs sm:text-[13px] tracking-tight">{p.title}</span>
+                  </div>
+                  <span
+                    className={`text-[10px] font-mono px-2 py-0.5 rounded-md shrink-0 ml-2 ${
+                      isSelected
+                        ? "bg-black/25 text-black font-extrabold"
+                        : "text-teal-300 bg-white/5 border border-white/5"
+                    }`}
+                  >
                     {p.allocation}
                   </span>
                 </button>
@@ -411,9 +419,9 @@ export default function About() {
                     </div>
                   )}
 
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] font-mono">
+                  <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono">
                     <span className="text-slate-400">Shipped In: <strong className="text-cyan-300">{activePillar.shippedIn}</strong></span>
-                    <span className="text-teal-300 font-bold px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/20">
+                    <span className="self-start sm:self-auto text-teal-300 font-bold px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/20 text-[10px] sm:text-[11px]">
                       {activePillar.metric}
                     </span>
                   </div>
@@ -511,7 +519,7 @@ export default function About() {
                       </div>
 
                       <div className="text-slate-400 text-[9px] sm:text-[10px] flex items-center justify-between pt-1 border-t border-white/5">
-                        <span>Fitts's Law & Usability Index:</span>
+                        <span>Usability Score:</span>
                         <span className="text-emerald-400 font-bold">99.2% Frictionless</span>
                       </div>
                     </div>

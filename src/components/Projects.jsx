@@ -6,7 +6,7 @@ export const PROJECTS_DATA = [
   {
     id: "cinescript",
     featured: true,
-    badge: "FLAGSHIP AI SYSTEM",
+    badge: "FEATURED AI PROJECT",
     badgeColor: "border-teal-400/40 text-teal-300 bg-teal-500/10",
     glowColor: "rgba(0, 243, 255, 0.35)",
     icon: (
@@ -14,7 +14,7 @@ export const PROJECTS_DATA = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
-    title: "CineScript Studio - RAG-Powered AI Screenwriting",
+    title: "CineScript Studio - AI Screenwriting with RAG",
     role: "AI / Backend Engineer",
     category: "GenAI & Vector RAG",
     shortDesc:
@@ -78,7 +78,7 @@ export const PROJECTS_DATA = [
   {
     id: "pulsev",
     featured: false,
-    badge: "HIGH-THROUGHPUT ENGINE",
+    badge: "HIGH-PERFORMANCE ANALYTICS",
     badgeColor: "border-cyan-400/40 text-cyan-300 bg-cyan-500/10",
     glowColor: "rgba(34, 211, 238, 0.35)",
     icon: (
@@ -145,7 +145,7 @@ export const PROJECTS_DATA = [
   {
     id: "novaui",
     featured: false,
-    badge: "SAAS PLATFORM & SYSTEMS",
+    badge: "CLOUD SAAS PLATFORM",
     badgeColor: "border-emerald-400/40 text-emerald-300 bg-emerald-500/10",
     glowColor: "rgba(16, 185, 129, 0.35)",
     icon: (
@@ -267,18 +267,18 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
 
       <div className="max-w-6xl mx-auto space-y-8">
         {/* ========================================================= */}
-        {/* SECTION HEADER (CLEAN & COMPACT)                          */}
+        {/* SECTION HEADER (CLEAN & SIMPLE)                           */}
         {/* ========================================================= */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-teal-500/30 bg-[#031518]/90 text-teal-300 text-[11px] font-mono shadow-[0_0_15px_rgba(45,212,191,0.15)]">
             <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
-            <span>PRODUCTION ARCHITECTURES</span>
+            <span>PORTFOLIO // SELECTED WORK</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-heading font-black tracking-tight text-white">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-400">Engineering Systems</span>
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-400">Projects</span>
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm font-sans max-w-xl mx-auto leading-relaxed">
-            Multi-tier vector retrieval, thread-isolated log stream engines, and reactive SaaS state machines.
+            Real-world systems spanning Agentic AI, high-performance backends, and cloud platforms.
           </p>
         </div>
 
@@ -290,7 +290,7 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
           <div className="relative group">
             <div className="absolute -top-3 left-6 z-10">
               <span className="px-3 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider uppercase bg-gradient-to-r from-teal-400 to-cyan-400 text-black shadow-[0_0_15px_rgba(0,243,255,0.4)]">
-                ★ Flagship AI System
+                ★ Featured AI Project
               </span>
             </div>
 
@@ -348,7 +348,7 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
                       }}
                       className="flex-1 py-2 px-3 rounded-lg bg-gradient-to-r from-teal-400 to-cyan-400 text-black font-mono font-bold text-xs hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_15px_rgba(0,243,255,0.3)] flex items-center justify-center gap-1.5"
                     >
-                      <span>Open Blueprint</span>
+                      <span>View Architecture</span>
                       <span>↗</span>
                     </button>
                     <a
@@ -450,7 +450,7 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
                     }}
                     className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-cyan-300 hover:text-white transition-colors"
                   >
-                    <span>Inspect Full Blueprint</span>
+                    <span>View Architecture</span>
                     <span>↗</span>
                   </button>
 
@@ -475,7 +475,7 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
             className="inline-flex items-center justify-center gap-3 px-7 py-3 rounded-xl bg-gradient-to-r from-teal-500/20 via-cyan-500/20 to-teal-500/10 border border-teal-400/40 text-teal-300 hover:text-white font-mono text-xs font-bold shadow-[0_0_25px_rgba(0,243,255,0.2)] hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(0,243,255,0.35)] transition-all group active:scale-98"
           >
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-            <span>Explore Full Project Studio & Architectural Blueprints</span>
+            <span>Explore Detailed Project Architectures</span>
             <span className="w-5 h-5 rounded-full bg-teal-400/20 flex items-center justify-center text-teal-300 group-hover:translate-x-1 transition-transform">
               ↗
             </span>

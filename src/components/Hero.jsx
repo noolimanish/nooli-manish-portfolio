@@ -343,7 +343,6 @@ function ParticleAvatar({ imageSrc }) {
   };
 
   const handlePointerMove = (e) => {
-    if (e.pointerType === "touch") return; // Keep mobile scroll smooth
     updatePointer(e.clientX, e.clientY);
   };
 
@@ -352,6 +351,23 @@ function ParticleAvatar({ imageSrc }) {
   };
 
   const handlePointerLeave = () => {
+    mouseRef.current.x = -2000;
+    mouseRef.current.y = -2000;
+  };
+
+  const handleTouchMove = (e) => {
+    if (e.touches && e.touches[0]) {
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchStart = (e) => {
+    if (e.touches && e.touches[0]) {
+      updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchEnd = () => {
     mouseRef.current.x = -2000;
     mouseRef.current.y = -2000;
   };
@@ -369,7 +385,13 @@ function ParticleAvatar({ imageSrc }) {
         ref={canvasRef}
         onPointerMove={handlePointerMove}
         onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerLeave}
         onPointerLeave={handlePointerLeave}
+        onPointerCancel={handlePointerLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
         className="relative z-20 cursor-crosshair drop-shadow-[0_0_30px_rgba(20,184,166,0.3)] touch-none max-w-full"
         style={{ width: "420px", height: "460px" }}
       />
