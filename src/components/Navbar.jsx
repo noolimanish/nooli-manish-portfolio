@@ -53,28 +53,28 @@ export default function Navbar({ isHidden = false }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -30 }}
           transition={{ duration: 0.2 }}
-          className="fixed top-0 left-0 right-0 z-50 pt-3 sm:pt-4 px-3 sm:px-6 pointer-events-none flex flex-col items-center"
+          className="fixed top-0 left-0 right-0 z-50 pt-2.5 sm:pt-3.5 px-3 sm:px-6 pointer-events-none flex flex-col items-center"
         >
           {/* Main Top Navbar Pill */}
-          <nav className="pointer-events-auto w-full max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-8 py-3 sm:py-3.5 glacier-card rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.6)] border border-teal-500/25 bg-[#031518]/90 backdrop-blur-xl transition-all">
+          <nav className="pointer-events-auto w-full max-w-5xl xl:max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 xl:px-8 py-2.5 sm:py-3 glacier-card rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.6)] border border-teal-500/25 bg-[#031518]/90 backdrop-blur-xl transition-all">
             {/* Brand / Logo */}
             <a
               href="#home"
-              className="font-heading font-black text-base sm:text-lg md:text-xl tracking-wide text-teal-400 hover:text-teal-300 transition-colors flex items-center gap-2 group shrink-0"
+              className="font-heading font-black text-sm sm:text-base md:text-lg tracking-wide text-teal-400 hover:text-teal-300 transition-colors flex items-center gap-2 group shrink-0"
             >
               <span className="w-2.5 h-2.5 rounded-full bg-teal-400 shadow-[0_0_10px_#2dd4bf] group-hover:scale-125 transition-transform" />
               <span>NOOLI MANISH</span>
             </a>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium text-slate-300">
+            <div className="hidden md:flex items-center gap-1 xl:gap-1.5 text-xs xl:text-sm font-medium text-slate-300">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.substring(1);
                 return (
                   <a
                     key={link.label}
                     href={link.href}
-                    className={`relative px-3.5 lg:px-4 py-1.5 rounded-full transition-all duration-200 ${
+                    className={`relative px-3 xl:px-3.5 py-1.5 rounded-full transition-all duration-200 ${
                       isActive
                         ? "text-teal-300 bg-white/10 border border-teal-400/30 shadow-inner font-bold"
                         : "hover:text-teal-300 hover:bg-white/[0.04]"
@@ -90,7 +90,7 @@ export default function Navbar({ isHidden = false }) {
             <div className="flex items-center gap-2.5">
               <a
                 href="#contact"
-                className="hidden sm:inline-flex bg-gradient-to-r from-teal-400 to-emerald-400 text-black px-4 sm:px-5 py-2 rounded-full font-bold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all shadow-[0_0_22px_rgba(45,212,191,0.35)] shrink-0"
+                className="hidden sm:inline-flex bg-gradient-to-r from-teal-400 to-emerald-400 text-black px-4 xl:px-5 py-1.5 xl:py-2 rounded-full font-bold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all shadow-[0_0_22px_rgba(45,212,191,0.35)] shrink-0"
               >
                 Contact Me →
               </a>

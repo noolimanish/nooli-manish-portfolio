@@ -369,54 +369,57 @@ function FloatingSocialCubeCard({ cube, scrollX, scrollY, dragConstraints }) {
   return (
     <motion.div
       style={{ x: scrollX, y: scrollY }}
-      animate={{
-        y: cube.yFloat,
-        rotate: cube.rotateFloat,
-      }}
-      transition={{
-        repeat: Infinity,
-        duration: cube.duration,
-        ease: "easeInOut",
-      }}
-      className="hidden lg:block z-30"
+      className="hidden lg:block z-30 shrink-0"
     >
-      <motion.a
-        href={cube.url}
-        target={cube.url.startsWith("mailto") ? "_self" : "_blank"}
-        rel="noreferrer"
-        drag
-        dragConstraints={dragConstraints}
-        dragElastic={0.25}
-        whileHover={{ scale: 1.05, y: -3 }}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        whileTap={{ scale: 0.95 }}
-        className={`glacier-card group relative px-3.5 py-2.5 rounded-2xl border ${cube.border} bg-[#031518]/90 backdrop-blur-xl ${cube.glow} flex items-center justify-between gap-3 cursor-grab active:cursor-grabbing hover:bg-[#031518] transition-all select-none`}
+      <motion.div
+        animate={{
+          y: cube.yFloat,
+          rotate: cube.rotateFloat,
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: cube.duration,
+          ease: "easeInOut",
+        }}
       >
-        <div className="flex items-center gap-3">
-          {/* Mini 3D-angled icon box */}
-          <div
-            className={`relative w-8 h-8 rounded-xl ${cube.bg} border ${cube.border} flex items-center justify-center shrink-0 shadow-inner group-hover:scale-110 transition-transform`}
-          >
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/25 rounded-xl pointer-events-none" />
-            {cube.icon}
-          </div>
-
-          <div className="flex flex-col text-left">
-            <div className="flex items-center gap-1.5">
-              <span className={`text-[11px] font-mono font-bold tracking-wider uppercase ${cube.color}`}>
-                {cube.name}
-              </span>
-              <span className="text-[10px] text-slate-400 group-hover:text-cyan-300 transition-colors">↗</span>
+        <motion.a
+          href={cube.url}
+          target={cube.url.startsWith("mailto") ? "_self" : "_blank"}
+          rel="noreferrer"
+          drag
+          dragConstraints={dragConstraints}
+          dragElastic={0.25}
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileDrag={{ scale: 1.08, cursor: "grabbing" }}
+          whileTap={{ scale: 0.95 }}
+          className={`glacier-card group relative px-3 py-1.5 xl:px-3.5 xl:py-2 rounded-xl xl:rounded-2xl border ${cube.border} bg-[#031518]/90 backdrop-blur-xl ${cube.glow} flex items-center justify-between gap-2.5 cursor-grab active:cursor-grabbing hover:bg-[#031518] transition-all select-none`}
+        >
+          <div className="flex items-center gap-2.5">
+            {/* Mini 3D-angled icon box */}
+            <div
+              className={`relative w-7 h-7 xl:w-7.5 xl:h-7.5 rounded-lg xl:rounded-xl ${cube.bg} border ${cube.border} flex items-center justify-center shrink-0 shadow-inner group-hover:scale-110 transition-transform`}
+            >
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/25 rounded-lg xl:rounded-xl pointer-events-none" />
+              {cube.icon}
             </div>
-            <span className="text-[9px] font-mono text-slate-400 tracking-tight">
-              {cube.sub}
-            </span>
-          </div>
-        </div>
 
-        {/* Live status dot */}
-        <span className={`w-1.5 h-1.5 rounded-full ${cube.dotColor} animate-pulse`} />
-      </motion.a>
+            <div className="flex flex-col text-left">
+              <div className="flex items-center gap-1.5">
+                <span className={`text-[10px] xl:text-[11px] font-mono font-bold tracking-wider uppercase ${cube.color}`}>
+                  {cube.name}
+                </span>
+                <span className="text-[9px] xl:text-[10px] text-slate-400 group-hover:text-cyan-300 transition-colors">↗</span>
+              </div>
+              <span className="text-[8.5px] xl:text-[9px] font-mono text-slate-400 tracking-tight">
+                {cube.sub}
+              </span>
+            </div>
+          </div>
+
+          {/* Live status dot */}
+          <span className={`w-1.5 h-1.5 rounded-full ${cube.dotColor} animate-pulse`} />
+        </motion.a>
+      </motion.div>
     </motion.div>
   );
 }
@@ -513,14 +516,24 @@ export default function LandingTest() {
   const textOpacity = useTransform(smoothProgress, [0.25, 0.6], [0, 1]);
 
   // 4. All 4 Cards float to the right and sway like balloons
-  const card1X = useTransform(smoothProgress, [0.05, 0.7], ["0vw", "45vw"]);
+  const card1X = useTransform(smoothProgress, [0.05, 0.7], ["0vw", "44vw"]);
   const card1Y = useTransform(smoothProgress, [0.05, 0.7], ["0vh", "0vh"]);
-  const card2X = useTransform(smoothProgress, [0.08, 0.7], ["0vw", "48vw"]);
+  const card2X = useTransform(smoothProgress, [0.08, 0.7], ["0vw", "46vw"]);
   const card2Y = useTransform(smoothProgress, [0.08, 0.7], ["0vh", "0vh"]);
   const card3X = useTransform(smoothProgress, [0.05, 0.7], ["0vw", "5vw"]);
   const card3Y = useTransform(smoothProgress, [0.05, 0.7], ["0vh", "0vh"]);
   const card4X = useTransform(smoothProgress, [0.08, 0.7], ["0vw", "4vw"]);
   const card4Y = useTransform(smoothProgress, [0.08, 0.7], ["0vh", "0vh"]);
+
+  // 4.5 Dedicated cube transforms that expand gently in Stage 2 to prevent any overlap
+  const cube1X = card1X;
+  const cube1Y = useTransform(smoothProgress, [0.05, 0.7], ["0vh", "-2.5vh"]);
+  const cube2X = card2X;
+  const cube2Y = useTransform(smoothProgress, [0.08, 0.7], ["0vh", "2.5vh"]);
+  const cube3X = card3X;
+  const cube3Y = useTransform(smoothProgress, [0.05, 0.7], ["0vh", "-2.5vh"]);
+  const cube4X = card4X;
+  const cube4Y = useTransform(smoothProgress, [0.08, 0.7], ["0vh", "2.5vh"]);
 
   const scrollIndicatorOpacity = useTransform(smoothProgress, [0, 0.1], [1, 0]);
 
@@ -562,127 +575,135 @@ export default function LandingTest() {
         </div>
 
         {/* Top spacer to preserve layout height under global Navbar */}
-        <div className="h-20 sm:h-24 pointer-events-none" />
+        <div className="h-14 sm:h-16 lg:h-18 shrink-0 pointer-events-none" />
 
-        <div className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-6 flex items-center justify-between pb-12">
+        <div className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 flex items-center justify-between pb-3 lg:pb-5">
           
           {/* Left Cards */}
-          <div className="hidden lg:flex flex-col gap-6 z-20 w-[310px] justify-center">
+          <div className="hidden lg:flex flex-col gap-2 xl:gap-2.5 z-20 w-[295px] xl:w-[315px] justify-center">
             {/* Floating Cube 1: LinkedIn (Draggable 3D Block) */}
             <FloatingSocialCubeCard
               cube={SOCIAL_CUBES[0]}
-              scrollX={card1X}
-              scrollY={card1Y}
+              scrollX={cube1X}
+              scrollY={cube1Y}
               dragConstraints={dragConstraints}
             />
 
             <motion.div
               style={{ x: card1X, y: card1Y }}
-              animate={{ y: [0, -8, 0], rotate: [-1, 1, -1] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+              className="shrink-0"
             >
               <motion.div
-                drag
-                dragConstraints={dragConstraints}
-                dragElastic={0.2}
-                whileDrag={{ scale: 1.05, cursor: "grabbing" }}
-                className="cursor-grab active:cursor-grabbing"
+                animate={{ y: [0, -6, 0], rotate: [-1, 1, -1] }}
+                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               >
-                {/* Orchestrator & Live Simulation Card (Matches Image 2) */}
-                <div className="glacier-card rounded-2xl overflow-hidden border border-teal-500/35 bg-[#031518]/85 shadow-[0_16px_36px_rgba(0,0,0,0.7)]">
-                  {/* Top Bar with window controls & tok/s */}
-                  <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 bg-white/[0.03]">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-teal-400/80" />
-                      <span className="text-[11px] text-teal-300 font-mono ml-2 font-bold">
-                        agent_orchestrator.py
-                      </span>
-                    </div>
-                    <span className="text-[11px] font-mono text-teal-400 font-bold">
-                      {tokSpeed} tok/s
-                    </span>
-                  </div>
-
-                  {/* Class Code */}
-                  <div className="p-4 text-xs font-mono leading-relaxed text-slate-200">
-                    <span className="text-cyan-400 font-bold">class</span>{" "}
-                    <span className="text-yellow-300 font-bold">AgenticArchitect</span>
-                    <span className="text-slate-300">(Manish):</span>
-                    <br />
-                    &nbsp;&nbsp;<span className="text-slate-300">llm</span> ={" "}
-                    <span className="text-emerald-300">"Gemini-2.5-Pro"</span>
-                    <br />
-                    &nbsp;&nbsp;<span className="text-slate-300">memory</span> ={" "}
-                    <span className="text-purple-300 font-semibold">FourTierRAG()</span>
-                    <br />
-                    &nbsp;&nbsp;<span className="text-slate-300">self_critique</span> ={" "}
-                    <span className="text-cyan-400 font-bold">True</span>
-                  </div>
-
-                  {/* Sub-box: Live ReAct Simulation Trace */}
-                  <div className="mx-3.5 mb-3.5 p-3 rounded-xl bg-black/55 border border-white/10 relative overflow-hidden">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-mono tracking-wider text-slate-400 uppercase font-bold">
-                        LIVE REACT TRACE:
-                      </span>
-                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-purple-500/15 border border-purple-500/35 text-purple-300 font-bold uppercase">
-                        [OBSERVATION]
+                <motion.div
+                  drag
+                  dragConstraints={dragConstraints}
+                  dragElastic={0.2}
+                  whileDrag={{ scale: 1.05, cursor: "grabbing" }}
+                  className="cursor-grab active:cursor-grabbing"
+                >
+                  {/* Orchestrator & Live Simulation Card */}
+                  <div className="glacier-card rounded-2xl overflow-hidden border border-teal-500/35 bg-[#031518]/85 shadow-[0_16px_36px_rgba(0,0,0,0.7)]">
+                    {/* Top Bar with window controls & tok/s */}
+                    <div className="flex items-center justify-between px-3.5 py-1.5 xl:py-2 border-b border-white/10 bg-white/[0.03]">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 rounded-full bg-red-500/80" />
+                        <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
+                        <div className="w-2 h-2 rounded-full bg-teal-400/80" />
+                        <span className="text-[10px] xl:text-[11px] text-teal-300 font-mono ml-1.5 font-bold">
+                          agent_orchestrator.py
+                        </span>
+                      </div>
+                      <span className="text-[10px] xl:text-[11px] font-mono text-teal-400 font-bold">
+                        {tokSpeed} tok/s
                       </span>
                     </div>
 
-                    <div className="min-h-[34px] flex items-center relative">
-                      <AnimatePresence mode="wait">
-                        <motion.p
-                          key={traceIndex}
-                          initial={{ opacity: 0, y: 3 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -3 }}
-                          transition={{ duration: 0.2 }}
-                          className="text-[11px] font-mono text-slate-200 leading-snug"
-                        >
-                          {traceLogs[traceIndex]}
-                        </motion.p>
-                      </AnimatePresence>
+                    {/* Class Code */}
+                    <div className="px-3.5 py-2 xl:py-2.5 text-[11px] xl:text-xs font-mono leading-relaxed text-slate-200">
+                      <span className="text-cyan-400 font-bold">class</span>{" "}
+                      <span className="text-yellow-300 font-bold">AgenticArchitect</span>
+                      <span className="text-slate-300">(Manish):</span>
+                      <br />
+                      &nbsp;&nbsp;<span className="text-slate-300">llm</span> ={" "}
+                      <span className="text-emerald-300">"Gemini-2.5-Pro"</span>
+                      <br />
+                      &nbsp;&nbsp;<span className="text-slate-300">memory</span> ={" "}
+                      <span className="text-purple-300 font-semibold">FourTierRAG()</span>
+                      <br />
+                      &nbsp;&nbsp;<span className="text-slate-300">self_critique</span> ={" "}
+                      <span className="text-cyan-400 font-bold">True</span>
+                    </div>
 
-                      {/* Glowing Pulse indicator in center */}
-                      <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center">
-                        <span className="w-4 h-4 rounded-full bg-teal-400/25 animate-ping absolute" />
-                        <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                    {/* Sub-box: Live ReAct Simulation Trace */}
+                    <div className="mx-3 mb-2.5 xl:mb-3 p-2 xl:p-2.5 rounded-xl bg-black/55 border border-white/10 relative overflow-hidden">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] xl:text-[10px] font-mono tracking-wider text-slate-400 uppercase font-bold">
+                          LIVE REACT TRACE:
+                        </span>
+                        <span className="text-[8.5px] xl:text-[9px] font-mono px-1.5 py-0.5 rounded bg-purple-500/15 border border-purple-500/35 text-purple-300 font-bold uppercase">
+                          [OBSERVATION]
+                        </span>
+                      </div>
+
+                      <div className="min-h-[28px] flex items-center relative pr-4">
+                        <AnimatePresence mode="wait">
+                          <motion.p
+                            key={traceIndex}
+                            initial={{ opacity: 0, y: 2 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -2 }}
+                            transition={{ duration: 0.18 }}
+                            className="text-[10px] xl:text-[11px] font-mono text-slate-200 leading-snug truncate"
+                          >
+                            {traceLogs[traceIndex]}
+                          </motion.p>
+                        </AnimatePresence>
+
+                        {/* Glowing Pulse indicator in center */}
+                        <div className="absolute right-1 top-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center">
+                          <span className="w-3.5 h-3.5 rounded-full bg-teal-400/25 animate-ping absolute" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             </motion.div>
 
             <motion.div
               style={{ x: card2X, y: card2Y }}
-              animate={{ y: [0, -10, 0], rotate: [1, -1, 1] }}
-              transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 0.5 }}
+              className="shrink-0"
             >
-              <motion.div drag dragConstraints={dragConstraints} dragElastic={0.2} whileDrag={{ scale: 1.05, cursor: "grabbing" }} className="cursor-grab active:cursor-grabbing">
-                <div className="glacier-card p-5 rounded-2xl">
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center text-teal-300 text-base shadow-inner">🎬</div>
-                    <div>
-                      <h3 className="text-sm font-bold text-white">The Storyteller's Block</h3>
-                      <p className="text-[10px] text-teal-400 uppercase tracking-widest font-mono">UI/UX & Filmography</p>
+              <motion.div
+                animate={{ y: [0, -7, 0], rotate: [1, -1, 1] }}
+                transition={{ repeat: Infinity, duration: 6.8, ease: "easeInOut", delay: 0.5 }}
+              >
+                <motion.div drag dragConstraints={dragConstraints} dragElastic={0.2} whileDrag={{ scale: 1.05, cursor: "grabbing" }} className="cursor-grab active:cursor-grabbing">
+                  <div className="glacier-card p-3.5 xl:p-4 rounded-xl xl:rounded-2xl">
+                    <div className="flex items-center gap-2.5 mb-1.5 xl:mb-2">
+                      <div className="w-8 h-8 rounded-lg xl:rounded-xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center text-teal-300 text-sm xl:text-base shadow-inner shrink-0">🎬</div>
+                      <div>
+                        <h3 className="text-xs xl:text-sm font-bold text-white leading-tight">The Storyteller's Block</h3>
+                        <p className="text-[9px] xl:text-[10px] text-teal-400 uppercase tracking-widest font-mono">UI/UX & Filmography</p>
+                      </div>
                     </div>
+                    <p className="text-[11px] xl:text-xs text-slate-300 leading-relaxed font-sans">
+                      In my colony of ideas, one corner writes scripts and explores filmography. I bring cinematic pacing into software architecture.
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    In my colony of ideas, one corner writes scripts and explores filmography. I bring cinematic pacing into software architecture.
-                  </p>
-                </div>
+                </motion.div>
               </motion.div>
             </motion.div>
 
             {/* Floating Cube 2: GitHub (Draggable 3D Block) */}
             <FloatingSocialCubeCard
               cube={SOCIAL_CUBES[1]}
-              scrollX={card2X}
-              scrollY={card2Y}
+              scrollX={cube2X}
+              scrollY={cube2Y}
               dragConstraints={dragConstraints}
             />
           </div>
@@ -788,87 +809,95 @@ export default function LandingTest() {
           </div>
 
           {/* Right Cards */}
-          <div className="hidden lg:flex flex-col gap-6 z-20 w-[290px] justify-center">
+          <div className="hidden lg:flex flex-col gap-2 xl:gap-2.5 z-20 w-[285px] xl:w-[300px] justify-center">
             {/* Floating Cube 3: Medium (Draggable 3D Block) */}
             <FloatingSocialCubeCard
               cube={SOCIAL_CUBES[2]}
-              scrollX={card3X}
-              scrollY={card3Y}
+              scrollX={cube3X}
+              scrollY={cube3Y}
               dragConstraints={dragConstraints}
             />
 
             <motion.div
               style={{ x: card3X, y: card3Y }}
-              animate={{ y: [0, -8, 0], rotate: [1, -1, 1] }}
-              transition={{ repeat: Infinity, duration: 6.5, ease: "easeInOut" }}
+              className="shrink-0"
             >
-              <motion.div drag dragConstraints={dragConstraints} dragElastic={0.2} whileDrag={{ scale: 1.05, cursor: "grabbing" }} className="cursor-grab active:cursor-grabbing">
-                <div className="glacier-card p-5 rounded-2xl">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-teal-400 to-emerald-500 p-[1.5px] shrink-0 shadow-[0_0_15px_rgba(20,184,166,0.3)]">
-                      <div className="w-full h-full bg-[#031518]/90 rounded-[10px] flex flex-col items-center justify-center text-[11px] font-black text-teal-400 leading-none">
-                        <span>2+</span>
-                        <span className="text-[8px] text-teal-200/70 tracking-tighter mt-0.5">YEARS</span>
+              <motion.div
+                animate={{ y: [0, -6, 0], rotate: [1, -1, 1] }}
+                transition={{ repeat: Infinity, duration: 6.5, ease: "easeInOut" }}
+              >
+                <motion.div drag dragConstraints={dragConstraints} dragElastic={0.2} whileDrag={{ scale: 1.05, cursor: "grabbing" }} className="cursor-grab active:cursor-grabbing">
+                  <div className="glacier-card p-3.5 xl:p-4 rounded-xl xl:rounded-2xl">
+                    <div className="flex items-center gap-2.5 mb-2 xl:mb-2.5">
+                      <div className="w-10 h-10 xl:w-11 xl:h-11 rounded-lg xl:rounded-xl bg-gradient-to-tr from-teal-400 to-emerald-500 p-[1.5px] shrink-0 shadow-[0_0_15px_rgba(20,184,166,0.3)]">
+                        <div className="w-full h-full bg-[#031518]/90 rounded-[8px] xl:rounded-[10px] flex flex-col items-center justify-center text-[10px] xl:text-[11px] font-black text-teal-400 leading-none">
+                          <span>2+</span>
+                          <span className="text-[7.5px] xl:text-[8px] text-teal-200/70 tracking-tighter mt-0.5">YEARS</span>
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-xs xl:text-sm font-bold text-white leading-tight">Software Engineer I</h3>
+                        <p className="text-[10px] xl:text-[11px] text-teal-400/70 font-mono mt-0.5">Mirafra Tech</p>
                       </div>
                     </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-white leading-tight">Software Engineer I</h3>
-                      <p className="text-[11px] text-teal-400/70 font-mono mt-0.5">Mirafra Tech</p>
+                    <div className="bg-white/[0.03] rounded-lg xl:rounded-xl p-2 xl:p-2.5 border border-white/5">
+                      <div className="flex justify-between items-center text-[9.5px] xl:text-[10px] font-mono text-slate-300 mb-1">
+                        <span>Current Client</span>
+                        <span className="text-teal-400 font-bold">AMD</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                        <div className="w-[85%] h-full bg-gradient-to-r from-teal-400 to-emerald-400 rounded-full" />
+                      </div>
                     </div>
                   </div>
-                  <div className="bg-white/[0.03] rounded-xl p-2.5 border border-white/5">
-                    <div className="flex justify-between items-center text-[10px] font-mono text-slate-300 mb-1.5">
-                      <span>Current Client</span>
-                      <span className="text-teal-400 font-bold">AMD</span>
-                    </div>
-                    <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                      <div className="w-[85%] h-full bg-gradient-to-r from-teal-400 to-emerald-400 rounded-full" />
-                    </div>
-                  </div>
-                </div>
+                </motion.div>
               </motion.div>
             </motion.div>
 
-            {/* Reviewer Agent Loop Card (Matches Image 2) */}
+            {/* Reviewer Agent Loop Card */}
             <motion.div
               style={{ x: card4X, y: card4Y }}
-              animate={{ y: [0, -10, 0], rotate: [-1, 1, -1] }}
-              transition={{ repeat: Infinity, duration: 7.2, ease: "easeInOut", delay: 0.3 }}
+              className="shrink-0"
             >
-              <motion.div drag dragConstraints={dragConstraints} dragElastic={0.2} whileDrag={{ scale: 1.05, cursor: "grabbing" }} className="cursor-grab active:cursor-grabbing">
-                <div className="glacier-card p-5 rounded-2xl border-yellow-500/30 bg-[#031518]/90 backdrop-blur-xl relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-1.5 h-full bg-yellow-400 rounded-l" />
-                  
-                  {/* Top Row: Tag + Pass Metric (Matches Image 2) */}
-                  <div className="flex items-center justify-between mb-2.5 pl-1.5">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24] animate-pulse" />
-                      <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">
-                        REVIEWER AGENT LOOP
+              <motion.div
+                animate={{ y: [0, -7, 0], rotate: [-1, 1, -1] }}
+                transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 0.3 }}
+              >
+                <motion.div drag dragConstraints={dragConstraints} dragElastic={0.2} whileDrag={{ scale: 1.05, cursor: "grabbing" }} className="cursor-grab active:cursor-grabbing">
+                  <div className="glacier-card p-3.5 xl:p-4 rounded-xl xl:rounded-2xl border-yellow-500/30 bg-[#031518]/90 backdrop-blur-xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-yellow-400 rounded-l" />
+                    
+                    {/* Top Row: Tag + Pass Metric */}
+                    <div className="flex items-center justify-between mb-2 pl-1.5">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24] animate-pulse" />
+                        <span className="text-[10.5px] xl:text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">
+                          REVIEWER AGENT LOOP
+                        </span>
+                      </div>
+                      <span className="text-[10.5px] xl:text-xs font-mono text-emerald-400 font-bold tracking-wider">
+                        PASS: 99.4%
                       </span>
                     </div>
-                    <span className="text-xs font-mono text-emerald-400 font-bold tracking-wider">
-                      PASS: 99.4%
-                    </span>
-                  </div>
 
-                  {/* Body Content (Matches Image 2) */}
-                  <p className="text-xs text-slate-200 leading-relaxed pl-1.5 font-sans">
-                    Zero generic AI output. I engineer{" "}
-                    <span className="text-teal-300 font-bold">dual–LLM verification loops</span>{" "}
-                    and{" "}
-                    <span className="text-amber-300 font-bold">Pytest guardrails</span>{" "}
-                    that critique continuity, schema compliance, and style before API delivery.
-                  </p>
-                </div>
+                    {/* Body Content */}
+                    <p className="text-[11px] xl:text-xs text-slate-200 leading-relaxed pl-1.5 font-sans">
+                      Zero generic AI output. I engineer{" "}
+                      <span className="text-teal-300 font-bold">dual–LLM verification loops</span>{" "}
+                      and{" "}
+                      <span className="text-amber-300 font-bold">Pytest guardrails</span>{" "}
+                      that critique continuity, schema compliance, and style before API delivery.
+                    </p>
+                  </div>
+                </motion.div>
               </motion.div>
             </motion.div>
 
             {/* Floating Cube 4: Email / Chat (Draggable 3D Block) */}
             <FloatingSocialCubeCard
               cube={SOCIAL_CUBES[3]}
-              scrollX={card4X}
-              scrollY={card4Y}
+              scrollX={cube4X}
+              scrollY={cube4Y}
               dragConstraints={dragConstraints}
             />
           </div>
@@ -897,7 +926,7 @@ export default function LandingTest() {
 
         <motion.div 
           style={{ opacity: isDesktop ? scrollIndicatorOpacity : 1 }}
-          className="relative z-20 pb-3 sm:pb-5 text-teal-400/40 text-xs font-mono tracking-widest uppercase flex flex-col items-center gap-1.5 pointer-events-none"
+          className="relative z-20 pb-2 sm:pb-3.5 shrink-0 text-teal-400/40 text-xs font-mono tracking-widest uppercase flex flex-col items-center gap-1 pointer-events-none"
         >
           <span>Scroll to explore</span>
           <span>↓</span>
