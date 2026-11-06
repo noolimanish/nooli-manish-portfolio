@@ -485,7 +485,7 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
 
       {/* ========================================================================= */}
       {/* SEPARATE FULL-SCREEN DEDICATED ARCHITECTURAL STUDIO MODAL / WORKBENCH      */}
-      {/* (Rendered directly via createPortal to document.body outside stacking context) */}
+      {/* (Wireframe Structure: Top Header -> Domain Tabs -> Card 1 -> Card 2)       */}
       {/* ========================================================================= */}
       {typeof document !== "undefined" &&
         createPortal(
@@ -498,246 +498,244 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
                 transition={{ duration: 0.2 }}
                 className="fixed inset-0 z-[99999] bg-[#02090b]/98 backdrop-blur-3xl overflow-y-auto flex flex-col justify-between"
               >
-                {/* Top Studio Bar */}
-                <div className="sticky top-0 z-20 w-full border-b border-white/10 bg-[#02090b]/95 backdrop-blur-xl px-4 sm:px-8 py-3.5">
-                  <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    {/* Back button & Title */}
-                    <div className="flex items-center gap-4">
+                {/* 1. TOP HEADER BAR WITH CLOSE BUTTON (Matches User Wireframe) */}
+                <div className="sticky top-0 z-30 w-full border-b border-white/10 bg-[#02090b]/95 backdrop-blur-xl px-4 sm:px-6 py-3">
+                  <div className="max-w-5xl mx-auto">
+                    {/* Top Tag & Close Button Row */}
+                    <div className="flex items-center justify-between pb-1.5">
+                      <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full border border-teal-500/30 bg-[#031518] text-teal-300 text-[10px] font-mono">
+                        <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                        <span>ENGINEERING ARCHITECTURE STUDIO</span>
+                      </div>
+
                       <button
                         onClick={() => setIsStudioOpen(false)}
-                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-teal-500/30 bg-[#031518] text-teal-300 hover:text-white hover:bg-teal-500/20 text-xs font-mono transition-all group"
+                        className="px-2.5 py-1 rounded-xl border border-teal-500/30 bg-[#031518] hover:border-cyan-400 text-teal-300 hover:text-white transition-all flex items-center gap-1.5 text-xs font-mono group"
+                        title="Return to Portfolio [Esc]"
                       >
-                        <span className="group-hover:-translate-x-1 transition-transform">←</span>
-                        <span>Return to Portfolio</span>
+                        <span className="text-slate-400 group-hover:text-white">✕</span>
+                        <span className="hidden sm:inline text-[11px]">Close [Esc]</span>
                       </button>
-
-                      <div className="hidden sm:block w-px h-5 bg-white/10" />
-
-                      <div className="hidden md:flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                        <span className="text-xs font-mono tracking-wider text-slate-300">
-                          SYSTEMS ARCHITECTURE STUDIO
-                        </span>
-                      </div>
                     </div>
 
-                    {/* Search Bar (Dedicated in Studio View) */}
-                    <div className="flex items-center gap-3 flex-1 max-w-md">
-                      <div className="relative w-full">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-mono">
-                          🔍
-                        </span>
-                        <input
-                          type="text"
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          placeholder="Search architecture, stack, algorithms..."
-                          className="w-full bg-[#031518]/90 border border-teal-500/25 rounded-xl pl-8 pr-7 py-1.5 text-xs font-mono text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors"
-                        />
-                        {searchQuery && (
-                          <button
-                            onClick={() => setSearchQuery("")}
-                            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs"
-                          >
-                            ×
-                          </button>
-                        )}
+                    {/* Main Title Row */}
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h2 className="text-lg sm:text-2xl font-heading font-black text-white tracking-tight">
+                          Explore Detailed Architecture
+                        </h2>
+                        <p className="text-[11px] sm:text-xs font-sans text-slate-400">
+                          System blueprints, step-by-step execution pipelines, and verified production benchmarks.
+                        </p>
                       </div>
-
-                      {/* Close [ESC] Button */}
-                      <button
-                        onClick={() => setIsStudioOpen(false)}
-                        className="p-1.5 rounded-xl border border-white/10 hover:border-teal-400/40 bg-white/[0.04] text-slate-400 hover:text-white transition-colors"
-                        title="Close [Esc]"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
                     </div>
                   </div>
                 </div>
 
-                {/* Studio Main Body: 2-Panel Master-Detail Studio Layout */}
-                <div className="max-w-7xl mx-auto w-full px-4 sm:px-8 py-6 flex-1">
-                  {/* Category Filter Pills */}
-                  <div className="flex flex-wrap items-center gap-2 mb-6">
+                {/* 2. MAIN STUDIO CONTAINER (Matches User Wireframe: Tabs -> Card 1 -> Card 2) */}
+                <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 py-4 space-y-4 flex-1">
+                  {/* DOMAIN TABS (AI, Backend, Frontend) */}
+                  <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5 p-1 rounded-2xl bg-[#031518]/90 border border-teal-500/25 backdrop-blur-xl">
                     {[
-                      { id: "all", label: "All Systems (3)" },
-                      { id: "genai", label: "GenAI & Vector RAG" },
-                      { id: "systems", label: "High-Throughput Web" },
-                      { id: "saas", label: "Cloud SaaS & Security" },
-                    ].map((c) => (
-                      <button
-                        key={c.id}
-                        onClick={() => setCategoryFilter(c.id)}
-                        className={`px-3.5 py-1 rounded-full text-xs font-mono transition-all border ${
-                          categoryFilter === c.id
-                            ? "bg-teal-500/20 border-teal-400 text-teal-300 shadow-[0_0_15px_rgba(45,212,191,0.25)]"
-                            : "bg-[#031518]/80 border-white/10 text-slate-400 hover:text-slate-200"
-                        }`}
-                      >
-                        {c.label}
-                      </button>
-                    ))}
+                      { id: "cinescript", label: "AI & Agentic", shortLabel: "AI", icon: "🧠" },
+                      { id: "pulsev", label: "Backend & Systems", shortLabel: "Backend", icon: "⚙️" },
+                      { id: "novaui", label: "Frontend & Cloud", shortLabel: "Frontend", icon: "🎨" },
+                    ].map((tab) => {
+                      const isSelected = selectedStudioProject.id === tab.id;
+                      const targetProject = PROJECTS_DATA.find((p) => p.id === tab.id);
+                      return (
+                        <button
+                          key={tab.id}
+                          onClick={() => {
+                            if (targetProject) setSelectedStudioProject(targetProject);
+                          }}
+                          className={`py-2 sm:py-2.5 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-mono font-bold transition-all flex items-center justify-center gap-1.5 sm:gap-2 text-center ${
+                            isSelected
+                              ? "bg-gradient-to-r from-teal-400 to-cyan-400 text-black shadow-[0_0_20px_rgba(0,243,255,0.35)]"
+                              : "text-slate-400 hover:text-white hover:bg-white/[0.04]"
+                          }`}
+                        >
+                          <span className="text-sm">{tab.icon}</span>
+                          <span className="hidden sm:inline font-semibold">{tab.label}</span>
+                          <span className="sm:hidden font-semibold">{tab.shortLabel}</span>
+                        </button>
+                      );
+                    })}
                   </div>
 
-                  {/* Master-Detail Layout */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    {/* Left Panel: Project Selectors (4 cols) */}
-                    <div className="lg:col-span-4 space-y-2.5">
-                      <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">
-                        SELECT PRODUCTION DEPLOYMENT
+                  {/* ========================================================================= */}
+                  {/* CARD 1: OVERVIEW & IMPACT (Top Card in User Wireframe)                    */}
+                  {/* (Top Header Block + Connected Content Block)                             */}
+                  {/* ========================================================================= */}
+                  <div className="glacier-card rounded-2xl border border-teal-500/30 bg-[#031518]/90 overflow-hidden shadow-[0_12px_32px_rgba(0,0,0,0.5)]">
+                    {/* Card 1: Top Header Block */}
+                    <div className="bg-white/[0.02] border-b border-white/10 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#02090b] border border-teal-500/40 flex items-center justify-center shrink-0">
+                          {selectedStudioProject.icon}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className={`text-[9px] sm:text-[10px] font-mono uppercase px-2 py-0.5 rounded-md border ${selectedStudioProject.badgeColor}`}>
+                              {selectedStudioProject.badge}
+                            </span>
+                            <span className="text-[10px] sm:text-[11px] font-mono text-cyan-300">
+                              Role: <strong className="text-slate-200">{selectedStudioProject.role}</strong>
+                            </span>
+                          </div>
+                          <h3 className="text-base sm:text-xl font-heading font-black text-white tracking-tight mt-1">
+                            {selectedStudioProject.title}
+                          </h3>
+                        </div>
                       </div>
 
-                      {studioProjects.length === 0 ? (
-                        <div className="p-5 rounded-xl bg-[#031518]/60 border border-white/10 text-center text-xs font-mono text-slate-400">
-                          No architectures found matching "{searchQuery}"
-                        </div>
-                      ) : (
-                        studioProjects.map((p) => {
-                          const isSelected = selectedStudioProject.id === p.id;
-                          return (
-                            <button
-                              key={p.id}
-                              onClick={() => setSelectedStudioProject(p)}
-                              className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 flex flex-col gap-2 ${
-                                isSelected
-                                  ? "bg-gradient-to-r from-teal-500/20 to-cyan-500/10 border-cyan-400 shadow-[0_0_20px_rgba(0,243,255,0.15)]"
-                                  : "bg-[#031518]/60 border-white/10 hover:border-teal-500/30 hover:bg-[#031518]/90"
-                              }`}
-                            >
-                              <div className="flex items-center justify-between">
-                                <span className={`text-[9px] font-mono uppercase px-2 py-0.5 rounded-md border ${p.badgeColor}`}>
-                                  {p.badge}
-                                </span>
-                                <span className="text-[9px] font-mono text-slate-400">
-                                  {isSelected ? "● ACTIVE" : "Select"}
-                                </span>
-                              </div>
-
-                              <div className="font-heading font-bold text-white text-sm">
-                                {p.title}
-                              </div>
-
-                              <div className="flex flex-wrap gap-1">
-                                {p.tech.slice(0, 3).map((t) => (
-                                  <span key={t} className="text-[9px] font-mono px-2 py-0.5 rounded bg-white/[0.04] text-slate-300">
-                                    {t}
-                                  </span>
-                                ))}
-                              </div>
-                            </button>
-                          );
-                        })
-                      )}
+                      <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                        <a
+                          href={selectedStudioProject.githubUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-3 py-1.5 rounded-lg border border-white/10 hover:border-teal-400/40 bg-white/[0.04] text-xs font-mono text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
+                        >
+                          <span>Source Code</span>
+                          <span className="text-[10px]">↗</span>
+                        </a>
+                        <a
+                          href={selectedStudioProject.liveUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-3.5 py-1.5 rounded-lg border border-teal-500/40 bg-teal-500/10 text-xs font-mono text-teal-300 hover:text-white transition-all shadow-[0_0_12px_rgba(45,212,191,0.2)] flex items-center gap-1.5 font-bold"
+                        >
+                          <span>Live Demo</span>
+                          <span>↗</span>
+                        </a>
+                      </div>
                     </div>
 
-                    {/* Right Panel: Active Architecture Blueprint Studio (8 cols) */}
-                    <div className="lg:col-span-8">
-                      <div className="glacier-card rounded-2xl border border-teal-500/30 bg-[#031518]/90 p-5 sm:p-7 backdrop-blur-2xl space-y-5">
-                        {/* Header: Title, Links & Tabs */}
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/10">
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-xs font-mono text-cyan-300 uppercase">{selectedStudioProject.category}</span>
-                              <span className="text-slate-500">•</span>
-                              <span className="text-xs font-mono text-slate-300">{selectedStudioProject.role}</span>
-                            </div>
-                            <h3 className="text-xl sm:text-2xl font-heading font-black text-white mt-1">
-                              {selectedStudioProject.title}
-                            </h3>
-                          </div>
+                    {/* Card 1: Content Block */}
+                    <div className="p-4 sm:p-5 space-y-4">
+                      {/* Problem Callout Box */}
+                      <div className="p-3.5 rounded-xl bg-amber-500/[0.07] border border-amber-500/30">
+                        <span className="text-[10px] sm:text-[11px] font-mono uppercase text-amber-300 font-bold block mb-1 flex items-center gap-1.5">
+                          <span>⚠️</span>
+                          <span>The Core Engineering Bottleneck Solved</span>
+                        </span>
+                        <p className="text-xs sm:text-[13px] font-sans text-slate-200 leading-relaxed">
+                          {selectedStudioProject.deepDetail.problem}
+                        </p>
+                      </div>
 
-                          <div className="flex items-center gap-2 shrink-0">
-                            <a
-                              href={selectedStudioProject.githubUrl}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="px-3 py-1.5 rounded-lg border border-white/10 hover:border-teal-400/40 bg-white/[0.04] text-xs font-mono text-slate-300 hover:text-white transition-all"
-                            >
-                              Source Code
-                            </a>
-                            <a
-                              href={selectedStudioProject.liveUrl}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="px-3 py-1.5 rounded-lg border border-teal-500/40 bg-teal-500/10 text-xs font-mono text-teal-300 hover:text-white transition-all shadow-[0_0_12px_rgba(45,212,191,0.2)]"
-                            >
-                              Live Prototype ↗
-                            </a>
+                      {/* 4-Tier Key Performance Specs Grid */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        {selectedStudioProject.metrics.map((m, i) => (
+                          <div key={i} className="p-2.5 rounded-xl bg-[#02090b]/80 border border-teal-500/20">
+                            <div className="text-[9px] font-mono text-slate-400 uppercase tracking-tight">{m.label}</div>
+                            <div className="text-xs sm:text-sm font-mono font-bold text-teal-300 mt-0.5 truncate">{m.value}</div>
                           </div>
-                        </div>
+                        ))}
+                      </div>
 
-                        {/* Navigation Tabs for Deep Inspection */}
-                        <div className="flex flex-wrap gap-1.5 pb-2 border-b border-white/5">
-                          {[
-                            { id: "specs", label: "System Specs & Native APIs" },
-                            { id: "pipeline", label: "Visual Pipeline Flow" },
-                            { id: "benchmarks", label: "Telemetry & Verification" },
-                            { id: "interview", label: "Interview Defense" },
-                          ].map((tab) => (
+                      {/* Tech Stack Chips */}
+                      <div className="flex flex-wrap items-center gap-1.5 pt-1 border-t border-white/5">
+                        <span className="text-[10px] font-mono text-slate-400 mr-1">Tech Stack:</span>
+                        {selectedStudioProject.tech.map((t) => (
+                          <span key={t} className="px-2.5 py-0.5 rounded-md bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-mono text-slate-300">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ========================================================================= */}
+                  {/* CARD 2: ARCHITECTURE SPECIFICATIONS & PIPELINE (Bottom Card in Wireframe) */}
+                  {/* (Top Header Block with Sub-Tabs + Connected Content Block)                */}
+                  {/* ========================================================================= */}
+                  <div className="glacier-card rounded-2xl border border-teal-500/30 bg-[#031518]/90 overflow-hidden shadow-[0_12px_32px_rgba(0,0,0,0.5)]">
+                    {/* Card 2: Top Header Block with Sub-Tabs */}
+                    <div className="bg-white/[0.02] border-b border-white/10 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div>
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-teal-300 font-bold block">
+                          ARCHITECTURE DETAILS & EXECUTION
+                        </span>
+                        <h4 className="text-sm sm:text-base font-heading font-black text-white mt-0.5">
+                          System Breakdown & Telemetry Flow
+                        </h4>
+                      </div>
+
+                      {/* Sub-Tab Selector Buttons */}
+                      <div className="flex items-center gap-1 bg-[#02090b] p-1 rounded-xl border border-white/10 self-start sm:self-auto">
+                        {[
+                          { id: "specs", label: "Specs & Logic", icon: "⚡" },
+                          { id: "pipeline", label: "Pipeline Flow", icon: "🔄" },
+                          { id: "benchmarks", label: "Telemetry & Defense", icon: "📊" },
+                        ].map((subTab) => {
+                          const isActive = studioActiveTab === subTab.id;
+                          return (
                             <button
-                              key={tab.id}
-                              onClick={() => setStudioActiveTab(tab.id)}
-                              className={`px-3 py-1 rounded-lg text-xs font-mono transition-all ${
-                                studioActiveTab === tab.id
-                                  ? "bg-teal-500/20 text-teal-300 border border-teal-400/50 shadow-inner"
-                                  : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                              key={subTab.id}
+                              onClick={() => setStudioActiveTab(subTab.id)}
+                              className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-mono font-medium transition-all flex items-center gap-1.5 ${
+                                isActive
+                                  ? "bg-teal-500/20 text-teal-300 border border-teal-400/40 shadow-inner font-bold"
+                                  : "text-slate-400 hover:text-white"
                               }`}
                             >
-                              {tab.label}
+                              <span>{subTab.icon}</span>
+                              <span className="text-[11px]">{subTab.label}</span>
                             </button>
-                          ))}
-                        </div>
+                          );
+                        })}
+                      </div>
+                    </div>
 
-                        {/* TAB CONTENT 1: System Specs & Architecture */}
+                    {/* Card 2: Content Block */}
+                    <div className="p-4 sm:p-5 min-h-[220px]">
+                      <AnimatePresence mode="wait">
                         {studioActiveTab === "specs" && (
-                          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-                            <div className="p-3.5 rounded-xl bg-amber-500/[0.07] border border-amber-500/30">
-                              <span className="text-[11px] font-mono uppercase text-amber-300 font-bold block mb-1">
-                                ⚠️ The Core Technical Bottleneck
-                              </span>
-                              <p className="text-xs sm:text-sm font-sans text-slate-200 leading-relaxed">
-                                {selectedStudioProject.deepDetail.problem}
-                              </p>
-                            </div>
-
-                            <div className="space-y-2.5">
-                              <span className="text-xs font-mono uppercase tracking-wider text-cyan-300 font-bold block">
-                                ⚡ Native Architecture & Implementation
-                              </span>
-                              <div className="grid grid-cols-1 gap-2">
-                                {selectedStudioProject.deepDetail.architecture.map((item, idx) => (
-                                  <div
-                                    key={idx}
-                                    className="bg-[#02090b]/80 border border-teal-500/20 rounded-xl p-3 flex flex-col sm:flex-row sm:items-start justify-between gap-2 hover:border-teal-400/40 transition-colors"
-                                  >
-                                    <div className="space-y-0.5">
-                                      <div className="text-xs font-bold text-white flex items-center gap-2">
-                                        <span className="text-teal-400 font-mono text-[10px]">0{idx + 1}.</span>
-                                        <span>{item.title}</span>
-                                      </div>
-                                      <p className="text-xs text-slate-300 font-sans leading-relaxed">
-                                        {item.desc}
-                                      </p>
+                          <motion.div
+                            key="specs"
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -6 }}
+                            transition={{ duration: 0.2 }}
+                            className="space-y-2.5"
+                          >
+                            <div className="grid grid-cols-1 gap-2.5">
+                              {selectedStudioProject.deepDetail.architecture.map((item, idx) => (
+                                <div
+                                  key={idx}
+                                  className="bg-[#02090b]/80 border border-teal-500/20 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-start justify-between gap-2 hover:border-teal-400/40 transition-colors"
+                                >
+                                  <div className="space-y-1">
+                                    <div className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+                                      <span className="text-teal-400 font-mono text-[11px]">0{idx + 1}.</span>
+                                      <span>{item.title}</span>
                                     </div>
-                                    <span className="sm:self-start shrink-0 px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/30 text-[9px] font-mono text-teal-300">
-                                      {item.highlight}
-                                    </span>
+                                    <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                                      {item.desc}
+                                    </p>
                                   </div>
-                                ))}
-                              </div>
+                                  <span className="self-start sm:self-auto shrink-0 px-2 py-0.5 rounded bg-teal-500/10 border border-teal-500/30 text-[9px] font-mono text-teal-300 whitespace-nowrap">
+                                    {item.highlight}
+                                  </span>
+                                </div>
+                              ))}
                             </div>
                           </motion.div>
                         )}
 
-                        {/* TAB CONTENT 2: Visual Pipeline Flow (Interactive Diagram) */}
                         {studioActiveTab === "pipeline" && (
-                          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
+                          <motion.div
+                            key="pipeline"
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -6 }}
+                            transition={{ duration: 0.2 }}
+                            className="space-y-3"
+                          >
                             <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                              <span>EXECUTION PATHWAY TELEMETRY</span>
-                              <span>STEP-BY-STEP DATA FLOW</span>
+                              <span>SEQUENTIAL DATA PIPELINE</span>
+                              <span>END-TO-END FLOW</span>
                             </div>
 
                             <div className="space-y-2.5 relative before:absolute before:left-4 before:top-4 before:bottom-4 before:w-0.5 before:bg-gradient-to-b before:from-teal-400 before:via-cyan-400 before:to-emerald-400">
@@ -762,21 +760,18 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
                           </motion.div>
                         )}
 
-                        {/* TAB CONTENT 3: Telemetry & Verification */}
                         {studioActiveTab === "benchmarks" && (
-                          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                              {selectedStudioProject.metrics.map((m, i) => (
-                                <div key={i} className="p-2.5 rounded-xl bg-[#02090b] border border-teal-500/20">
-                                  <div className="text-[9px] font-mono text-slate-400 uppercase">{m.label}</div>
-                                  <div className="text-xs font-mono font-bold text-teal-300 mt-0.5">{m.value}</div>
-                                </div>
-                              ))}
-                            </div>
-
-                            <div className="space-y-2.5 pt-1">
+                          <motion.div
+                            key="benchmarks"
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -6 }}
+                            transition={{ duration: 0.2 }}
+                            className="space-y-4"
+                          >
+                            <div className="space-y-2.5">
                               <span className="text-xs font-mono uppercase text-slate-300 font-bold block">
-                                Measured System Performance & Reliability
+                                Measured System Reliability & Performance
                               </span>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                 {selectedStudioProject.deepDetail.benchmarks.map((b, i) => (
@@ -797,37 +792,26 @@ export default function Projects({ isStudioOpen, setIsStudioOpen }) {
                                 ))}
                               </div>
                             </div>
-                          </motion.div>
-                        )}
 
-                        {/* TAB CONTENT 4: Interview Defense */}
-                        {studioActiveTab === "interview" && (
-                          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
-                            <div className="p-4 rounded-xl bg-teal-500/[0.08] border border-teal-500/35 space-y-2">
+                            <div className="p-4 rounded-xl bg-teal-500/[0.08] border border-teal-500/35 space-y-1.5">
                               <div className="flex items-center gap-2 text-xs font-mono uppercase text-teal-300 font-bold">
-                                <span className="w-2 h-2 rounded-full bg-teal-400" />
-                                <span>Staff / Senior Engineering Verification Defense</span>
+                                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+                                <span>Senior Engineering Verification & Interview Defense</span>
                               </div>
-                              <p className="text-xs sm:text-sm font-sans text-slate-200 leading-relaxed font-medium">
+                              <p className="text-xs sm:text-[13px] font-sans text-slate-200 leading-relaxed font-medium">
                                 {selectedStudioProject.deepDetail.interviewHighlight}
                               </p>
                             </div>
-
-                            <div className="p-3.5 rounded-xl bg-[#02090b]/80 border border-white/5 text-xs font-mono text-slate-400 space-y-1">
-                              <div>• Zero-dependency implementation verification</div>
-                              <div>• Validated against memory scale and browser paint profiles</div>
-                              <div>• Unit test coverage and schema validation contracts</div>
-                            </div>
                           </motion.div>
                         )}
-                      </div>
+                      </AnimatePresence>
                     </div>
                   </div>
                 </div>
 
-                {/* Bottom Studio Footer */}
-                <div className="w-full border-t border-white/10 bg-[#02090b]/90 px-4 sm:px-8 py-2.5 text-center text-[10px] font-mono text-slate-500">
-                  NOOLI MANISH // SYSTEMS ARCHITECTURAL PORTFOLIO • PRESS ESC TO EXIT STUDIO
+                {/* 3. STUDIO FOOTER */}
+                <div className="w-full border-t border-white/10 bg-[#02090b]/90 px-4 sm:px-6 py-2.5 text-center text-[10px] font-mono text-slate-500">
+                  NOOLI MANISH // SYSTEMS ARCHITECTURAL PORTFOLIO • PRESS ESC TO CLOSE
                 </div>
               </motion.div>
             )}
