@@ -131,7 +131,54 @@ function NeuralBackground() {
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0 opacity-60" />;
 }
 
-// 3. SCALED PARTICLE AVATAR
+// 3. SCALED PARTICLE AVATAR (With High-Speed Memory, LocalStorage & SessionStorage Caching)
+let inMemoryParticlePoints = null;
+
+function getCachedAvatarPoints(isMobile) {
+  if (inMemoryParticlePoints) return inMemoryParticlePoints;
+  const key = `nm_avatar_pts_${isMobile ? "m" : "d"}_v3`;
+  try {
+    const local = localStorage.getItem(key);
+    if (local) {
+      const parsed = JSON.parse(local);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        inMemoryParticlePoints = parsed;
+        return parsed;
+      }
+    }
+  } catch (e) {
+    // LocalStorage unavailable
+  }
+  try {
+    const stored = sessionStorage.getItem(key);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        inMemoryParticlePoints = parsed;
+        return parsed;
+      }
+    }
+  } catch (e) {
+    // SessionStorage unavailable
+  }
+  return null;
+}
+
+function saveAvatarPoints(points, isMobile) {
+  inMemoryParticlePoints = points;
+  const key = `nm_avatar_pts_${isMobile ? "m" : "d"}_v3`;
+  try {
+    localStorage.setItem(key, JSON.stringify(points));
+  } catch (e) {
+    // Quota exceeded or private browsing
+  }
+  try {
+    sessionStorage.setItem(key, JSON.stringify(points));
+  } catch (e) {
+    // Quota exceeded or private browsing
+  }
+}
+
 function ParticleAvatar({ imageSrc }) {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: -2000, y: -2000, radius: 110 });
@@ -151,6 +198,77 @@ function ParticleAvatar({ imageSrc }) {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
     const step = isMobile ? 5 : 4;
 
+    const startAnimation = () => {
+      let frameCount = 0;
+      const render = () => {
+        ctx.clearRect(0, 0, width, height);
+        frameCount += 0.02;
+
+        const mx = mouseRef.current.x;
+        const my = mouseRef.current.y;
+        const radius = mouseRef.current.radius;
+        const hasMouse = mx > -1000 && my > -1000;
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          if (hasMouse) {
+            const dx = mx - p.x;
+            const dy = my - p.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < radius) {
+              const angle = Math.atan2(dy, dx);
+              const force = (radius - dist) / radius;
+              const push = force * p.repelForce;
+              p.vx -= Math.cos(angle) * push;
+              p.vy -= Math.sin(angle) * push;
+            }
+          }
+
+          const floatY = Math.sin(frameCount + p.floatOffset) * 0.45;
+          const ax = (p.originX - p.x) * p.ease;
+          const ay = (p.originY + floatY - p.y) * p.ease;
+          p.vx = (p.vx + ax) * p.friction;
+          p.vy = (p.vy + ay) * p.friction;
+          p.x += p.vx;
+          p.y += p.vy;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+        }
+        animationFrameId = requestAnimationFrame(render);
+      };
+      render();
+    };
+
+    const buildParticlesFromPoints = (pts) => {
+      particles = pts.map((pt) => ({
+        originX: pt[0],
+        originY: pt[1],
+        x: pt[0] + (Math.random() - 0.5) * 12,
+        y: pt[1] + (Math.random() - 0.5) * 12,
+        vx: 0,
+        vy: 0,
+        size: pt[2],
+        color: `rgba(${pt[3]}, ${pt[4]}, ${pt[5]}, ${pt[6]})`,
+        ease: 0.07 + Math.random() * 0.03,
+        friction: 0.83,
+        repelForce: 85 + Math.random() * 40,
+        floatOffset: Math.random() * Math.PI * 2,
+      }));
+      startAnimation();
+    };
+
+    // 🚀 TIER 1: Check In-Memory & SessionStorage Cache (0ms Instant Load on reload/repeat visits!)
+    const cachedPoints = getCachedAvatarPoints(isMobile);
+    if (cachedPoints && cachedPoints.length > 0) {
+      buildParticlesFromPoints(cachedPoints);
+      return () => cancelAnimationFrame(animationFrameId);
+    }
+
+    // 🚀 TIER 2: If cold visit, sample image once and cache for all future visits
     const img = new Image();
     img.src = imageSrc;
 
@@ -179,7 +297,7 @@ function ParticleAvatar({ imageSrc }) {
           img.height * ratio
         );
         const imgData = offCtx.getImageData(0, 0, width, height).data;
-        particles = [];
+        const rawPoints = [];
 
         for (let y = 0; y < height; y += step) {
           for (let x = 0; x < width; x += step) {
@@ -191,66 +309,15 @@ function ParticleAvatar({ imageSrc }) {
             const brightness = (r + g + b) / 3;
 
             if (a > 30 && brightness > 8) {
-              particles.push({
-                originX: x,
-                originY: y,
-                x: x + (Math.random() - 0.5) * 12,
-                y: y + (Math.random() - 0.5) * 12,
-                vx: 0,
-                vy: 0,
-                size: isMobile ? Math.random() * 1.5 + 0.9 : Math.random() * 1.4 + 0.8,
-                color: `rgba(${r}, ${g}, ${b}, ${(a / 255) * 0.95})`,
-                ease: 0.07 + Math.random() * 0.03,
-                friction: 0.83,
-                repelForce: 85 + Math.random() * 40,
-                floatOffset: Math.random() * Math.PI * 2,
-              });
+              const size = isMobile ? Math.random() * 1.5 + 0.9 : Math.random() * 1.4 + 0.8;
+              const alphaVal = Math.round((a / 255) * 0.95 * 100) / 100;
+              rawPoints.push([x, y, Math.round(size * 10) / 10, r, g, b, alphaVal]);
             }
           }
         }
 
-        let frameCount = 0;
-        const render = () => {
-          ctx.clearRect(0, 0, width, height);
-          frameCount += 0.02;
-
-          const mx = mouseRef.current.x;
-          const my = mouseRef.current.y;
-          const radius = mouseRef.current.radius;
-          const hasMouse = mx > -1000 && my > -1000;
-
-          for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-
-            if (hasMouse) {
-              const dx = mx - p.x;
-              const dy = my - p.y;
-              const dist = Math.hypot(dx, dy);
-              if (dist < radius) {
-                const angle = Math.atan2(dy, dx);
-                const force = (radius - dist) / radius;
-                const push = force * p.repelForce;
-                p.vx -= Math.cos(angle) * push;
-                p.vy -= Math.sin(angle) * push;
-              }
-            }
-
-            const floatY = Math.sin(frameCount + p.floatOffset) * 0.45;
-            const ax = (p.originX - p.x) * p.ease;
-            const ay = (p.originY + floatY - p.y) * p.ease;
-            p.vx = (p.vx + ax) * p.friction;
-            p.vy = (p.vy + ay) * p.friction;
-            p.x += p.vx;
-            p.y += p.vy;
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
-            ctx.fill();
-          }
-          animationFrameId = requestAnimationFrame(render);
-        };
-        render();
+        saveAvatarPoints(rawPoints, isMobile);
+        buildParticlesFromPoints(rawPoints);
       } catch (err) {
         console.error("ParticleAvatar init error:", err);
       }
