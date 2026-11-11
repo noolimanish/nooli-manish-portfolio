@@ -6,11 +6,11 @@ export default function Experience() {
 
   const experiences = {
     amd: {
-      date: "JUNE 2025 — JULY 2026",
-      badge: "Enterprise Client",
-      title: "Software Engineer I // Backend & Automation",
-      company: "Mirafra Technologies",
-      client: "Client: AMD",
+      date: "DEC 2024 — PRESENT",
+      badge: "Enterprise Client: AMD",
+      title: "Software Engineer I // AI Tools & Backend Infrastructure",
+      company: "Mirafra Software Technologies Pvt. Ltd.",
+      client: "On-site Client: AMD (Hyderabad, India)",
       tabLabel: "Mirafra (Client: AMD)",
       icon: (
         <svg
@@ -28,31 +28,34 @@ export default function Experience() {
         </svg>
       ),
       description:
-        "Engineering scalable Python backend infrastructure and Django/SQL telemetry systems for AMD enterprise workflows. Automated high-throughput XML validation pipelines, built log-parsing microservices, and replaced manual file storage with optimized relational database schemas.",
+        "Engineering enterprise Python backends, automated FPGA timing pipelines, and intelligent AI-driven troubleshooting tools within AMD's Rapid Design Infrastructure (RDI) and Linux environment. Replacing manual workflows with normalized PostgreSQL schemas and high-precision semantic search.",
       bullets: [
-        "Architected automated Python verification pipelines eliminating manual XML validation delays.",
-        "Built robust Django & SQL data telemetry pipelines with comprehensive Pytest suites.",
-        "Designed high-throughput log-parsing and triage microservices to accelerate silicon error categorization.",
+        "RAG-Powered Debugging Assistant: Built an internal troubleshooting engine combining Python, vector embeddings, and semantic search over 10,000+ historical error logs and Jira threads—accelerating root-cause triage by 40%.",
+        "AI-Assisted QoR (Quality of Results) Analysis: Developed an analytical system integrating historical silicon metrics and domain knowledge with LLM-assisted reasoning to diagnose timing anomalies and device variations.",
+        "Centralized Engineering Script Backend: Architected a Python/Django/PostgreSQL platform organizing 500+ proprietary hardware scripts, slashing discovery and retrieval latency by 60%.",
+        "Automated FPGA Timing Pipelines: Automated FPGA timing flows and speedfile validation via complex XML/JSON extraction and verification routines, cutting manual engineering effort by 45%.",
       ],
       skills: [
-        "Python",
+        "Python (3.10+)",
         "Django",
-        "REST APIs",
-        "SQL Databases",
-        "AMD Workflows",
-        "System Design",
+        "PostgreSQL",
+        "RAG & Vector Embeddings",
+        "AMD RDI Framework",
+        "Xilinx Vivado",
+        "FPGA Speedfiles",
+        "Linux Systems",
+        "Perforce (P4)",
         "Pytest",
-        "XML Pipelines",
-        "Linux & Git",
+        "Jira",
       ],
     },
     internal: {
-      date: "JULY 2026 — PRESENT",
+      date: "2024 — PRESENT",
       badge: "Internal AI Systems",
-      title: "AI & Automation Engineer // Internal Systems",
-      company: "Mirafra Technologies",
-      client: "Ongoing Internal AI Automation Projects",
-      tabLabel: "Mirafra (Internal Project)",
+      title: "AI & Automation Engineer // Autonomous Agentic Systems",
+      company: "Mirafra Software Technologies",
+      client: "Internal Engineering Labs & Tooling",
+      tabLabel: "Mirafra (Internal AI Systems)",
       icon: (
         <svg
           className="w-5 h-5"
@@ -69,24 +72,22 @@ export default function Experience() {
         </svg>
       ),
       description:
-        "Currently working on AI-assisted internal applications for engineering and recruitment workflows, exploring agent-driven automations and LLM pipelines to streamline team productivity.",
+        "Architecting autonomous agentic tooling and LLM-assisted automation microservices to accelerate internal developer velocity, embedded firmware diagnostics, and technical recruitment operations.",
       bullets: [
-        "Embedded Software Assistant: Contributing to kernel log analysis, crash diagnostics, automated code review support, and test case generation.",
-        "Recruitment Assistant: Focused on intelligent resume screening, candidate ranking, interview question generation, and structured evaluation scorecards.",
-        "Agent-Driven Automation: Exploring AI-based automation and agentic workflows to improve team throughput and streamline cross-team processes.",
-        "Internal Tooling & Systems: Participating in the full-cycle development, testing, and enhancement of internal software tools with AI-enabled capabilities.",
+        "Embedded Software Assistant: Developed automated pipelines for kernel log analysis, crash diagnostics, automated code review support, and dynamic test case generation.",
+        "Intelligent Recruitment Assistant: Engineered an agentic system for semantic resume screening, candidate ranking, interview question synthesis, and structured evaluation scorecards.",
+        "Model Context Protocol (MCP) Integration: Implemented FastMCP tool servers exposing relational database operations as type-safe tool primitives for autonomous LLM agents.",
+        "Deterministic Guardrails: Enforced Pydantic v2 schemas and evaluator-optimizer loops to guarantee zero hallucination in internal tooling workflows.",
       ],
       skills: [
-        "AI Assistants",
-        "Agentic Workflows",
-        "Kernel Log Analysis",
-        "Crash Diagnostics",
-        "Resume Screening",
-        "Candidate Ranking",
-        "Interview Question Gen",
-        "Python",
-        "Test Generation",
-        "Internal Tooling",
+        "Agentic AI",
+        "FastMCP & Tool Calling",
+        "FastAPI",
+        "Pydantic v2",
+        "Kernel Log Diagnostics",
+        "Semantic Search",
+        "Pytest Guardrails",
+        "Docker Compose",
       ],
     },
   };

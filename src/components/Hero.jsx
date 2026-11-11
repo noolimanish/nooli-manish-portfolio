@@ -406,7 +406,7 @@ const SOCIAL_CUBES = [
     name: "LinkedIn",
     shortName: "LinkedIn",
     sub: "Professional Network",
-    url: "https://linkedin.com",
+    url: "https://www.linkedin.com/in/noolimanish/",
     color: "text-[#0077b5]",
     dotColor: "bg-[#0077b5]",
     glow: "shadow-[0_0_20px_rgba(0,119,181,0.25)]",
@@ -426,7 +426,7 @@ const SOCIAL_CUBES = [
     name: "GitHub",
     shortName: "GitHub",
     sub: "Code & Repositories",
-    url: "https://github.com",
+    url: "https://github.com/noolimanish",
     color: "text-emerald-400",
     dotColor: "bg-emerald-400",
     glow: "shadow-[0_0_20px_rgba(16,185,129,0.25)]",
@@ -442,22 +442,22 @@ const SOCIAL_CUBES = [
     ),
   },
   {
-    id: "medium",
-    name: "Medium",
-    shortName: "Medium",
-    sub: "AI & Tech Articles",
-    url: "https://medium.com",
-    color: "text-amber-400",
-    dotColor: "bg-amber-400",
-    glow: "shadow-[0_0_20px_rgba(245,158,11,0.25)]",
-    border: "border-amber-500/35 hover:border-amber-400/80",
-    bg: "bg-amber-500/15",
+    id: "behance",
+    name: "Behance",
+    shortName: "Behance",
+    sub: "UI/UX & Design Systems",
+    url: "https://www.behance.net/nmanish",
+    color: "text-cyan-400",
+    dotColor: "bg-cyan-400",
+    glow: "shadow-[0_0_20px_rgba(34,211,238,0.25)]",
+    border: "border-cyan-500/35 hover:border-cyan-400/80",
+    bg: "bg-cyan-500/15",
     yFloat: [0, -9, 0],
     rotateFloat: [2, -3, 2],
     duration: 5.8,
     icon: (
-      <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+      <svg className="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-4.148 0-6.625-3.051-6.625-6.85 0-3.957 2.62-6.95 6.425-6.95 4.398 0 5.867 3.447 5.568 6.95h-9.156c.074 2.148 1.488 4.25 3.864 4.25 1.733 0 2.871-.852 3.325-1.95h1.7zm-4.726-5.8c-.059-1.802-1.282-3.2-3.15-3.2-1.968 0-3.197 1.398-3.325 3.2h6.475zm-13.411 7.8h-5.589v-14h5.719c3.082 0 4.945 1.574 4.945 4.092 0 1.583-.873 2.895-2.28 3.518 1.761.644 2.617 2.152 2.617 3.842 0 2.756-2.122 4.548-5.412 4.548zm-2.889-8.1h2.511c1.55 0 2.485-.75 2.485-1.933 0-1.229-.982-1.867-2.435-1.867h-2.561v3.8zm0 5.95h2.695c1.677 0 2.784-.813 2.784-2.175 0-1.398-1.074-2.175-2.734-2.175h-2.745v4.35z"/>
       </svg>
     ),
   },
@@ -466,17 +466,17 @@ const SOCIAL_CUBES = [
     name: "Email / Chat",
     shortName: "Email",
     sub: "Direct Dispatch",
-    url: "mailto:manishnooli143@gmail.com",
-    color: "text-cyan-300",
-    dotColor: "bg-cyan-400",
+    url: "mailto:nmanish10@gmail.com",
+    color: "text-teal-300",
+    dotColor: "bg-teal-400",
     glow: "shadow-[0_0_20px_rgba(0,243,255,0.25)]",
-    border: "border-cyan-500/35 hover:border-cyan-400/80",
-    bg: "bg-cyan-500/15",
+    border: "border-teal-500/35 hover:border-teal-400/80",
+    bg: "bg-teal-500/15",
     yFloat: [0, -11, 0],
     rotateFloat: [-3, 2, -3],
     duration: 6.4,
     icon: (
-      <svg className="w-4 h-4 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-4 h-4 text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
@@ -884,7 +884,7 @@ export default function LandingTest() {
 
                 {/* Body Text with crisp font */}
                 <p className="text-xs sm:text-[13px] font-sans text-slate-100 leading-relaxed">
-                  Hey, I'm <strong className="font-bold text-white">Nooli Manish</strong>. I engineer enterprise Python/Django backends for <strong className="font-bold text-teal-300">AMD</strong> and architect multi-tier GenAI & screenwriting agents in <strong className="font-bold text-purple-300">CineScript Studio</strong>.
+                  Hey, I'm <strong className="font-bold text-white">Nooli Manish</strong>. I bridge deterministic backend infrastructure with autonomous GenAI systems—engineering enterprise Python/Django telemetry for <strong className="font-bold text-teal-300">AMD</strong> and architecting multi-agent RAG pipelines in <strong className="font-bold text-purple-300">CineScript Studio</strong>.
                 </p>
 
                 {/* Subtle Divider */}
@@ -1036,7 +1036,7 @@ export default function LandingTest() {
               </span>
             </h2>
             <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-sans">
-              From 4–tier vector retrieval and Gemini API orchestration to production Django/SQL pipelines at AMD—built for reliability, wrapped in high-craft UI.
+              Bridging deterministic backend engineering with autonomous GenAI systems. Specializing in Python backends, high-throughput APIs, production RAG pipelines, and agentic workflows—wrapped in zero-dependency, high-performance web interfaces.
             </p>
           </motion.div>
 

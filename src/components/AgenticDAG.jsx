@@ -135,7 +135,13 @@ export default function AgenticDAG() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 space-y-8">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4"
+        >
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-mono uppercase tracking-wider mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping" />
@@ -169,12 +175,18 @@ export default function AgenticDAG() {
             />
             {isSimulating ? "Simulating..." : "▶ Run Simulation"}
           </button>
-        </div>
+        </motion.div>
 
         {/* ========================================================= */}
         {/* PLAYFUL COMPACT INTERACTIVE CIRCUIT PIPELINE (SAVES 65% SPACE) */}
         {/* ========================================================= */}
-        <div className="glacier-card rounded-2xl p-4 sm:p-5 border border-teal-500/25 bg-[#031518]/85 backdrop-blur-xl shadow-lg relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="glacier-card rounded-2xl p-4 sm:p-5 border border-teal-500/25 bg-[#031518]/85 backdrop-blur-xl shadow-lg relative overflow-hidden"
+        >
           <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-4 flex items-center justify-between">
             <span className="text-cyan-300 flex items-center gap-1.5">
               <span>⚡</span>
@@ -248,7 +260,7 @@ export default function AgenticDAG() {
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* Mobile View Switcher (Saves 300px+ vertical height on phone screens) */}
         <div className="flex lg:hidden items-center justify-center gap-2 p-1 rounded-xl bg-[#031518]/90 border border-teal-500/25 max-w-fit mx-auto backdrop-blur-xl">
@@ -278,7 +290,13 @@ export default function AgenticDAG() {
         {/* ========================================================= */}
         {/* UNIFIED COMPACT INSPECTOR WORKBENCH (NODE DETAILS + LOGS) */}
         {/* ========================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch"
+        >
           {/* Left 7 cols: Active Node Details */}
           <div className={`lg:col-span-7 glacier-card rounded-2xl p-5 sm:p-6 border border-teal-500/30 bg-[#031518]/90 backdrop-blur-xl flex flex-col justify-between space-y-4 ${
             mobileDagView === "specs" ? "block" : "hidden lg:flex"
@@ -364,7 +382,7 @@ export default function AgenticDAG() {
               <span className="text-teal-400">LATENCY: 18ms</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

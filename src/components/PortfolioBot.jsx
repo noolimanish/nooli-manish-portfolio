@@ -5,42 +5,52 @@ const MANISH_KNOWLEDGE = {
   intro: {
     title: "Who is Manish Nooli?",
     answer:
-      "Hey! I'm **Manish Nooli**, a **Pure AI & Agentic Systems Engineer** based in Hyderabad. Currently, I work as a **Software Engineer I at Mirafra Technologies**, building scalable backend automation and telemetry pipelines for our client **AMD**.\n\nI specialize in **Generative AI & Agentic Architecture**:\n• Autonomous ReAct agents with dynamic tool-calling\n• 4-tier RAG retrieval with Sentence-Transformers & cosine embeddings\n• Dual-LLM reviewer loops with Pytest guardrails for zero-hallucination delivery\n• High-throughput Python/Django/SQL enterprise backend pipelines.",
+      "Hey! I'm **Nooli Manish**, a **Software Engineer** specializing in **Python Backends, Production RAG Pipelines, and Autonomous GenAI Systems**, based in Hyderabad, India.\n\nCurrently, I work at **Mirafra Technologies (on-site with AMD)**, where I engineer internal RAG troubleshooting tools, silicon QoR telemetry, and automated FPGA timing pipelines.\n\nI build hybrid architectures where probabilistic LLM reasoning is strictly grounded by deterministic schemas (Pydantic v2), normalized databases (PostgreSQL/SQLAlchemy), and zero-dependency web interfaces.",
   },
   agentic: {
     title: "What is Manish's Agentic AI & RAG expertise?",
     answer:
-      "Manish designs production-grade autonomous agent architectures:\n\n• **ReAct Planner & Execution**: Deconstructs user queries into reasoning steps ([THOUGHT] -> [ACTION] -> [OBSERVATION]) to select between semantic vector search or relational database tools.\n• **4-Tier RAG Engine**: Developed in **CineScript Studio** to index rules into Voice, Structure, Mechanics, and Philosophy tiers, using dense embeddings and top-K cosine ranking.\n• **Dual-LLM Reviewer Gates**: A secondary critic agent validates continuity, schema compliance, and format before API dispatch (achieving **99.4% pass rate**).\n• **Zero Hallucination Guardrails**: Hardened with Pytest assertions and strict JSON schema validators.",
+      "Manish designs production-grade autonomous agent architectures:\n\n• **ReAct Planner & Evaluator-Optimizer**: Deconstructs user intents into reasoning chains with generator-critic loops that critique candidate output before API delivery.\n• **4-Tier RAG Engine**: Developed in **CineScript Studio** to index rules into Voice, Structure, Mechanics, and Philosophy tiers, using Indic sentence-transformers & FAISS cosine search (18ms retrieval).\n• **Model Context Protocol (FastMCP)**: Implements type-safe MCP tool servers exposing relational database operations to autonomous agents with strict Pydantic v2 boundaries.\n• **Dual-LLM Reviewer Gates**: A secondary critic agent validates continuity, schema compliance, and format before API dispatch (achieving **99.4% pass rate**).",
   },
   amd: {
     title: "What did Manish build at AMD?",
     answer:
-      "At **Mirafra Technologies for AMD**, Manish:\n\n• **Automated XML & Silicon Log Pipelines**: Replaced slow manual inspection with high-throughput Python validation tools.\n• **Django & SQL Database Telemetry**: Migrated raw file storage to structured relational databases with query optimization.\n• **Automated Triage Parsers**: Developed regex and regex-free parsers that triage silicon validation logs and categorize errors automatically.\n• **Reliability Testing**: Built comprehensive test suites with Pytest to guarantee zero regression.",
+      "At **Mirafra Technologies for client AMD**, Manish:\n\n• **RAG-Powered Debugging Assistant**: Semantic search engine over 10,000+ error logs and Jira threads, cutting root-cause triage time by **40%**.\n• **QoR Analysis Tool**: Combined historical silicon metrics with LLM reasoning to diagnose timing anomalies across device runs.\n• **Centralized Script Backend**: Python/Django/PostgreSQL platform managing 500+ proprietary hardware scripts, reducing retrieval latency by **60%**.\n• **Automated FPGA Pipelines**: Automated timing flows and speedfile extraction, slashing manual engineering effort by **45%**.",
   },
   cinescript: {
     title: "What is CineScript Studio?",
     answer:
-      "**CineScript Studio** is Manish's flagship GenAI venture—a narrative intelligence platform for cinematic storytelling:\n\n• **4-Tier RAG Engine**: Separates screenwriting rules into Voice, Structure, Mechanics, and Philosophy.\n• **Dense Vector Search**: Uses Sentence-Transformers and cosine similarity for contextual prompt retrieval.\n• **Multi-Agent Reviewer Loop**: A secondary critic agent validates draft scripts against continuity constraints before final delivery.\n• **Stack**: Python, FastAPI, Google Gemini 2.5 Pro API, Vector Embeddings, React & Framer Motion.",
+      "**CineScript Studio** is Manish's flagship GenAI venture—an autonomous multi-agent screenwriting platform:\n\n• **4-Tier RAG Layer**: Separates screenwriting rules into Voice, Structure, Mechanics, and Philosophy vector spaces.\n• **Dense Vector Search**: Uses multilingual Indic sentence-transformers (Vyakyarth) and local FAISS index for sub-second retrieval.\n• **Agentic Evaluator-Optimizer Loop**: Generator Agent ingests 2,500-word chunks; Critic Agent critiques continuity and formatting before output.\n• **Stack**: Python, Streamlit, Google Gemini API, Sentence-Transformers, FAISS, SQLite, JSON.",
+  },
+  finsafe: {
+    title: "What is FinSafe AI?",
+    answer:
+      "**FinSafe AI** is Manish's deterministic financial risk audit engine:\n\n• **Decoupled Hybrid Architecture**: Strictly isolates mathematical computation from qualitative LLM advice to guarantee **0% hallucinated calculations**.\n• **Deterministic Engine**: Runs 5 verification algorithms across emergency fund liquidity, insurance coverage gaps, asset lock-in periods, and retirement readiness.\n• **Zero-Tolerance Schema Enforcement**: Built with **Pydantic v2** strict validation models with automatic fallback circuit breakers.\n• **Stack**: Python, FastAPI, Pydantic v2, SQLite, SQLAlchemy, Pytest, Docker Compose, Next.js, TypeScript.",
+  },
+  mcp: {
+    title: "What is MCP Task Assistant?",
+    answer:
+      "**MCP Task Assistant** is Manish's standardized Model Context Protocol server for autonomous AI agents:\n\n• **FastMCP Server**: Standardized server adhering to the open Model Context Protocol specification, exposing database CRUD actions as structured tool primitives.\n• **Schema-Validated Tool Primitives**: Strictly typed tools (`create_task`, `update_status`, `query_filtered`) through **Pydantic v2** to prevent hallucinated argument injection.\n• **Zero-Hallucination Agent State**: Allows autonomous AI clients to introspect tool schemas, plan multi-step operations, and execute state changes against local SQLite stores with structured error boundaries.",
   },
   pulsev: {
-    title: "What is Pulsev?",
+    title: "What is Pulse?",
     answer:
-      "**Pulsev** is a high-volume log & XML stream analytics engine built with zero dependencies:\n\n• **10,000+ logs/sec**: Processes telemetry off the main thread using an inline Web Worker via Blob URLs.\n• **O(1) Virtual Scrolling**: Renders only ~28 DOM nodes at any time regardless of dataset size (50k+ logs), completely eliminating layout thrashing.\n• **ES6 Proxy Store**: Reactive state management with 200ms debounced live regex filtering.",
+      "**Pulse** is a high-volume log & XML stream analytics engine built with **zero external dependencies**:\n\n• **10,000+ logs/sec**: Processes telemetry completely off the main thread using an inline Web Worker via Blob URLs.\n• **O(1) Virtual Scrolling**: Renders only ~28 active DOM rows regardless of dataset size (50k+ logs), maintaining a rock-solid **60.0 FPS**.\n• **ES6 Proxy Store**: Reactive state management with 200ms debounced live regex filtering and browser-native DOMParser XML linting.",
   },
   novaui: {
     title: "What is NovaUI?",
     answer:
-      "**NovaUI** is a production-grade cloud tenant provisioning portal with Carbon/Linear dark aesthetics:\n\n• **Zero-Dependency Proxy Store**: Auto-persists session state to localStorage and surgically updates subscribed UI components.\n• **Shannon Bit-Entropy**: Mathematical password strength quantification.\n• **Canvas Physics**: 60FPS Euclidean distance vector particle physics background with 100% WAI-ARIA accessibility.",
+      "**NovaUI** is a zero-dependency cloud tenant provisioning portal with Carbon/Linear dark aesthetics:\n\n• **Zero-Dependency Proxy Store**: Auto-persists session state to localStorage and surgically updates subscribed UI components.\n• **Shannon Bit-Entropy**: Live mathematical password strength quantification measuring actual entropy bits.\n• **Canvas Physics**: 60 FPS Euclidean distance vector particle physics background with 100% WAI-ARIA accessibility.",
   },
   skills: {
     title: "What are Manish's core skills?",
     answer:
-      "Manish brings pure AI engineering strength across three pillars:\n\n1. **GenAI & Agentic Systems**: Autonomous ReAct Agents, 4-Tier RAG, Google Gemini 2.5 Pro API & Tool Calling, Sentence-Transformers, Vector Search, Dual-LLM Reviewer Loops.\n2. **Python Backend & Architecture**: Django REST Framework, FastAPI, SQL (MySQL/SQLite), Pytest, REST APIs, XML/JSON parsing, Linux & Git.\n3. **Creative Visual Wrappers**: React, Tailwind CSS, Framer Motion, Streamlit AI telemetry UIs, and UI/UX design in Figma.",
+      "Manish brings enterprise engineering strength across three core pillars:\n\n1. **GenAI & Agentic Systems**: Autonomous ReAct Agents, 4-Tier RAG, Model Context Protocol (FastMCP), Google Gemini API, Groq API, Sentence-Transformers, FAISS, Dual-LLM Reviewer Loops.\n2. **Python Backend & Architecture**: FastAPI, Django REST Framework, Pydantic v2, PostgreSQL, SQLAlchemy ORM, SQLite, Pytest, Docker Compose, Linux & Git.\n3. **High-Performance Web & UI/UX**: Native Web Workers, DOM Virtualization, ES6 Proxy Reactivity, Canvas API, React, Tailwind CSS, Framer Motion, Figma.",
   },
   hire: {
     title: "What can Manish do for your team?",
     answer:
-      "Manish can:\n\n• Architect scalable autonomous multi-agent pipelines & ReAct state graphs.\n• Build custom 4-Tier RAG engines with high-precision vector retrieval.\n• Implement dual-LLM reviewer loops to eliminate hallucinations in production.\n• Build enterprise Python backend pipelines and wrap them in intuitive 60fps UIs.\n\nInterested in working together? Reach out directly at: **manishnooli143@gmail.com**!",
+      "Manish can:\n\n• Architect scalable autonomous multi-agent pipelines & ReAct state graphs.\n• Build custom 4-Tier RAG engines with high-precision FAISS vector retrieval.\n• Implement dual-LLM reviewer loops and deterministic Pydantic v2 guardrails.\n• Build enterprise Python backend pipelines and wrap them in zero-dependency 60fps UIs.\n\nInterested in working together? Reach out directly at: **nmanish10@gmail.com** (Phone: **+91 7569596435**)!",
   },
 };
 
@@ -79,7 +89,27 @@ function getBotReply(question) {
   }
 
   if (
+    q.includes("finsafe") ||
+    q.includes("finance") ||
+    q.includes("risk") ||
+    q.includes("audit") ||
+    q.includes("deterministic")
+  ) {
+    return MANISH_KNOWLEDGE.finsafe.answer;
+  }
+
+  if (
+    q.includes("mcp") ||
+    q.includes("fastmcp") ||
+    q.includes("protocol") ||
+    q.includes("tool call")
+  ) {
+    return MANISH_KNOWLEDGE.mcp.answer;
+  }
+
+  if (
     q.includes("pulsev") ||
+    q.includes("pulse") ||
     q.includes("virtual scroll") ||
     q.includes("worker") ||
     q.includes("log stream")

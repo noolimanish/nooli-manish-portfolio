@@ -11,30 +11,30 @@ const SKILL_CATEGORIES = [
     skills: [
       {
         id: "rag",
-        title: "4-Tier RAG Architecture",
+        title: "4-Tier Vector RAG Engine",
         icon: "📚",
         description: "Partitions knowledge into Voice, Structure, Mechanics, and Philosophy vector spaces to eliminate generic LLM output.",
-        coreMechanism: "Built a custom retrieval pipeline using Sentence-Transformers (Indic embeddings) and cosine similarity to fetch top-3 rules per layer, injecting them dynamically into the LLM prompt context.",
-        productionVerification: "Achieved an 18ms retrieval latency in CineScript Studio, ensuring strict narrative pacing and continuity across generated scenes.",
-        associatedStack: ["RAG", "Vector Search", "Cosine Similarity", "Sentence-Transformers"],
+        coreMechanism: "Built a custom retrieval pipeline using Sentence-Transformers (Indic Vyakyarth embeddings) and cosine similarity over a local FAISS index to fetch top-3 rules per layer, dynamically compiling multi-tier prompt context.",
+        productionVerification: "Achieved an 18ms retrieval latency in CineScript Studio, ensuring strict narrative pacing, formatting, and voice fidelity across generated scenes.",
+        associatedStack: ["4-Tier RAG", "FAISS Index", "Indic Vyakyarth", "Cosine Similarity"],
       },
       {
         id: "react-agents",
-        title: "Agentic AI & ReAct Patterns",
+        title: "Agentic AI & Evaluator-Optimizer",
         icon: "⚡",
-        description: "Deconstructs complex prompts into autonomous [THOUGHT] → [ACTION] → [OBSERVATION] execution chains.",
-        coreMechanism: "Implemented ReAct (Reasoning and Acting) agent loops that allow the LLM to autonomously decide which tools to call, evaluate the results, and self-correct.",
-        productionVerification: "Automated the extraction of 2,500-word script chunks into structured JSON schemas using Gemini 2.5 Pro with zero manual intervention.",
-        associatedStack: ["Agentic AI", "ReAct", "Tool Calling", "Gemini API"],
+        description: "Deconstructs complex goals into autonomous reasoning chains with dual-agent verification loops.",
+        coreMechanism: "Implemented ReAct agent loops and generator-critic architectures that allow the model to autonomously call tools, inspect state, and critique candidate scenes before final API delivery.",
+        productionVerification: "Automated extraction of 2,500-word chunks into structured JSON schemas using Gemini 2.5 Pro and Groq API with zero manual intervention.",
+        associatedStack: ["Agentic AI", "ReAct Loops", "Gemini API", "Groq API", "FastMCP"],
       },
       {
         id: "mcp",
-        title: "MCP (Model Context Protocol)",
+        title: "Model Context Protocol (FastMCP)",
         icon: "🔌",
-        description: "Standardized context injection and tool discovery for LLM applications.",
-        coreMechanism: "Designed structured JSON schemas and standardized interfaces to allow the LLM to safely discover and interact with external databases and local file systems.",
-        productionVerification: "Built a secure, compliant context layer that prevents prompt injection while allowing the AI to query local SQLite vector indices.",
-        associatedStack: ["MCP", "JSON Schema", "Context Window Management"],
+        description: "Standardized context injection, state isolation, and tool discovery for autonomous AI agents.",
+        coreMechanism: "Designed standardized FastMCP servers exposing database CRUD and analytical operations as strictly typed tool primitives with Pydantic v2 schema validation.",
+        productionVerification: "Built a type-safe MCP server preventing prompt injection while enabling autonomous AI agents to introspect and mutate relational databases with error boundaries.",
+        associatedStack: ["FastMCP", "Model Context Protocol", "Pydantic v2", "Tool Primitives"],
       },
       {
         id: "reviewer",
@@ -92,21 +92,21 @@ const SKILL_CATEGORIES = [
       },
       {
         id: "fastapi",
-        title: "FastAPI & Microservices",
+        title: "FastAPI, Pydantic v2 & Microservices",
         icon: "🚀",
-        description: "High-concurrency microservices delivering streaming AI completions with low latency.",
-        coreMechanism: "Built lightweight, service-oriented API layers using FastAPI and Flask to decouple frontend requests from heavy LLM processing.",
-        productionVerification: "Implemented service-layer architecture with strict input validation (Marshmallow) and bcrypt password hashing for secure user flows.",
-        associatedStack: ["FastAPI", "Flask", "Microservices", "Pydantic"],
+        description: "High-concurrency microservices delivering streaming AI completions and deterministic validation with sub-50ms latency.",
+        coreMechanism: "Built decoupled API architectures using FastAPI and Pydantic v2 strict models to enforce type-safe boundaries, automatic error recovery, and async request pooling.",
+        productionVerification: "Engineered FinSafe AI's backend with 100% deterministic mathematical isolation and strict fallback circuit breakers.",
+        associatedStack: ["FastAPI", "Pydantic v2", "SQLAlchemy", "AsyncIO", "Docker"],
       },
       {
         id: "sql",
-        title: "SQL & Database Optimization",
+        title: "PostgreSQL, SQLAlchemy & Relational Schema",
         icon: "🗄️",
-        description: "Relational database schema design, indexing strategies, and ORM query tuning.",
-        coreMechanism: "Designed normalized relational schemas and wrote optimized SQL queries to handle complex joins and transaction handling in production.",
-        productionVerification: "Centralized manual file metadata into optimized SQL tables, eliminating redundant data writes and speeding up internal dashboard load times.",
-        associatedStack: ["MySQL", "SQLite", "Django ORM", "Schema Design"],
+        description: "Relational database schema design, indexing strategies, normalization, and ORM query tuning.",
+        coreMechanism: "Designed normalized 3NF schemas, foreign key constraints, and indexed queries across PostgreSQL, SQLite, and MySQL to handle high-concurrency transactions without data drift.",
+        productionVerification: "Centralized 500+ AMD engineering scripts into indexed PostgreSQL tables, cutting query latency by 60%.",
+        associatedStack: ["PostgreSQL", "SQLite", "SQLAlchemy ORM", "Django ORM", "Schema Design"],
       },
       {
         id: "pipelines",
@@ -324,7 +324,13 @@ export default function SkillsMatrix() {
         {/* ========================================================= */}
         {/* INTERACTIVE SKILL MATRIX WORKBENCH (SPLIT VIEW)           */}
         {/* ========================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch"
+        >
           {/* LEFT PANEL: 6 Interactive Skill Tiles (7 cols) */}
           <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center justify-between px-2">
@@ -515,12 +521,18 @@ export default function SkillsMatrix() {
               </motion.div>
             </AnimatePresence>
           </div>
-        </div>
+        </motion.div>
 
         {/* ========================================================= */}
         {/* BOTTOM STATUS STRIP                                       */}
         {/* ========================================================= */}
-        <div className="p-5 rounded-2xl glacier-card border border-teal-500/20 bg-[#031518]/70 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-300">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="p-5 rounded-2xl glacier-card border border-teal-500/20 bg-[#031518]/70 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-300"
+        >
           <div className="flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-teal-400 shadow-[0_0_10px_#2dd4bf]" />
             <span>
@@ -532,7 +544,7 @@ export default function SkillsMatrix() {
             <span>● 100% Native Implementations</span>
             <span>● Production Guardrails</span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

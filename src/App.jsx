@@ -67,13 +67,13 @@ export default function App() {
 
           <div className="flex items-center gap-6">
             <a
-              href="mailto:manishnooli143@gmail.com"
+              href="mailto:nmanish10@gmail.com"
               className="text-teal-400 hover:text-teal-300 transition-colors"
             >
-              manishnooli143@gmail.com
+              nmanish10@gmail.com
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/noolimanish"
               target="_blank"
               rel="noreferrer"
               className="hover:text-teal-300 transition-colors"
@@ -81,12 +81,20 @@ export default function App() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/noolimanish/"
               target="_blank"
               rel="noreferrer"
               className="hover:text-teal-300 transition-colors"
             >
               LinkedIn
+            </a>
+            <a
+              href="https://www.behance.net/nmanish"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-teal-300 transition-colors"
+            >
+              Behance
             </a>
           </div>
         </div>

@@ -10,33 +10,34 @@ export default function About() {
       filename: "manish_profile.json",
       content: {
         name: "Nooli Manish",
-        role: "AI & Python Backend Engineer",
-        experience: "~2 Years Production Engineering",
-        location: "Hyderabad, India",
+        target_roles: "GenAI Application Engineer, Applied AI, Python Backend Developer",
+        experience: "2 Years Production Engineering",
+        location: "Hyderabad, Telangana, India",
         company: "Mirafra Technologies",
-        client_work: "AMD (Enterprise Backends & AI Telemetry)",
-        personal_passion: "Screenwriting, UI/UX Design & Filmography",
-        creative_craft: "Medium Case Studies & Business Problem Solving",
-        ethos: "Grounded engineering > Hype. Deterministic code backed by tests.",
+        client_work: "AMD (Enterprise Backends, AI Tools & Telemetry)",
+        education: "B.Tech in Computer Science & Engineering (SNIST)",
+        architectural_ethos: "Deterministic schemas & Pydantic validation > Hallucinatory black boxes.",
       },
     },
     story: {
       filename: "why_i_build.md",
       bullets: [
-        "• Screenwriting Frustration: I write scripts. Generic LLMs write flat dialogue and lose pacing after 2 scenes.",
-        "• The CineScript Fix: Built a domain retrieval engine injecting screenplay rules before LLM generation.",
-        "• The AMD Discipline: Automating silicon validation taught me that brittle pipelines block dozens of engineers.",
-        "• The Golden Rule: Native Web APIs, clean Python concurrency, and zero buzzword bloat.",
+        "• Grounded AI: I design hybrid systems where probabilistic LLM reasoning is strictly bounded by deterministic validation (Pydantic v2) and relational databases.",
+        "• Production RAG: Built CineScript Studio's 4-tier vector layer (Voice, Structure, Mechanics, Philosophy) with Indic sentence-transformers & FAISS to preserve narrative continuity.",
+        "• Enterprise AMD Discipline: Automated silicon validation pipelines and built RAG triage over 10,000+ logs, slashing root-cause debug time by 40%.",
+        "• Zero-Dependency Frontend: Engineered browser engines rendering 10,000+ streaming telemetry rows at a constant 60 FPS using native Web Workers and O(1) virtual scrolling.",
       ],
     },
     stack: {
       filename: "daily_stack.py",
       code: [
         "# Core daily engineering drivers",
-        "languages = ['Python 3.12', 'JavaScript (ES6+)']",
-        "ai_tooling = ['Google Gemini API', 'Vector Embeddings', 'ReAct Loops', 'MCP']",
-        "backend = ['Django / DRF', 'FastAPI', 'SQL', 'Pytest']",
-        "frontend = ['React', 'Tailwind CSS', 'Framer Motion', 'Web Workers']",
+        "languages = ['Python 3.10+', 'SQL', 'JavaScript (ES6+)', 'TypeScript', 'Bash']",
+        "backend = ['FastAPI', 'Django / DRF', 'Pydantic v2', 'SQLAlchemy ORM', 'asyncio']",
+        "genai = ['Multi-Tier RAG', 'Model Context Protocol (FastMCP)', 'Gemini API', 'FAISS', 'Evaluator-Optimizer']",
+        "databases = ['PostgreSQL', 'SQLite', 'MySQL', 'Relational Schema Optimization']",
+        "frontend = ['Native Web Workers', 'Canvas API', 'DOM Virtualization', 'Tailwind', 'Framer Motion']",
+        "tooling = ['Docker Compose', 'Pytest', 'AMD RDI / Vivado', 'Perforce P4', 'Git', 'Linux']",
       ],
     },
   };
@@ -49,14 +50,14 @@ export default function About() {
       badge: "Agentic AI & Systems",
       icon: "🧠",
       summary:
-        "Building autonomous reasoning loops and targeted vector retrieval that eliminate generic LLM hallucinations and enforce real domain constraints.",
+        "Building autonomous reasoning loops, FastMCP servers, and targeted vector retrieval that eliminate generic LLM hallucinations and enforce real domain constraints.",
       deliverables: [
-        "ReAct agent planners with dynamic tool-calling and observation memory",
-        "Vector search injecting structural rules for narrative continuity in CineScript",
-        "Secondary critic reviewer loops guaranteeing a 99.4% constraint pass rate",
+        "Agentic evaluator-optimizer loops with dynamic tool-calling and observation memory",
+        "4-tier RAG vector layer (Voice, Structure, Mechanics, Philosophy) with sub-second FAISS retrieval",
+        "Secondary critic reviewer loops guaranteeing a 99.4% constraint and continuity pass rate",
       ],
-      shippedIn: "CineScript Studio & AI Labs",
-      metric: "Top-3 Rule Injection • 18ms Latency",
+      shippedIn: "CineScript Studio, FinSafe AI & FastMCP Tools",
+      metric: "Top-3 Rule Injection • 18ms Latency • 99.4% Pass",
       animationType: "nodes",
     },
     backend: {
@@ -66,14 +67,14 @@ export default function About() {
       badge: "Enterprise Backend",
       icon: "⚙️",
       summary:
-        "Engineering high-throughput Python validation pipelines, Django/SQL telemetry systems, and AI-assisted triage microservices for AMD silicon workflows.",
+        "Engineering high-throughput Python validation pipelines, Django/SQL telemetry systems, and RAG-driven triage microservices for AMD enterprise silicon workflows.",
       deliverables: [
-        "Automated validation pipelines replacing slow manual payload checks",
-        "Intelligent log triage parsers that classify hardware validation errors",
-        "Relational telemetry databases with query optimization and Pytest suites",
+        "RAG-powered debugging assistant triaging 10,000+ historical error logs, accelerating root-cause analysis by 40%",
+        "Centralized hardware script management backend in Python/Django/PostgreSQL, cutting discovery latency by 60%",
+        "Automated FPGA timing verification pipelines eliminating 45% of manual extraction effort",
       ],
-      shippedIn: "Mirafra (Client: AMD)",
-      metric: "10,000+ Logs/Sec • Zero Regression",
+      shippedIn: "Mirafra Technologies (Client: AMD)",
+      metric: "10k+ Logs Parsed • 40% Triage Cut • Zero Regressions",
       animationType: "stream",
     },
     uiux: {
@@ -83,16 +84,16 @@ export default function About() {
       badge: "Product Design & UI/UX",
       icon: "🎨",
       summary:
-        "Solving real user pain points through thoughtful visual design. I craft clean UI/UX systems, write in-depth product design case studies on Medium, and build intuitive human interfaces.",
+        "Solving real user friction through high-performance web architecture and thoughtful visual design. Crafting zero-dependency browser engines, design systems, and published UI/UX case studies.",
       deliverables: [
-        "Publishing in-depth UI/UX teardowns and product design case studies on Medium",
-        "Deconstructing complex business friction into intuitive, high-conversion visual interfaces",
-        "Designing responsive design systems, interactive prototypes, and motion aesthetics in Figma",
+        "Multi-threaded zero-dependency log stream engine rendering 10k+ rows at constant 60 FPS (Pulse)",
+        "Zero-dependency cloud tenant provisioning portal with Shannon bit-entropy verification (NovaUI)",
+        "Designing responsive design systems, interactive prototypes, and product case studies on Behance",
       ],
-      shippedIn: "Medium Articles & Behance Portfolio",
-      metric: "Case Studies • Medium • Behance",
+      shippedIn: "Pulse, NovaUI & Behance Portfolio",
+      metric: "10k Rows @ 60 FPS • 100% WAI-ARIA • Behance",
       animationType: "design",
-      behanceUrl: "https://www.behance.net",
+      behanceUrl: "https://www.behance.net/nmanish",
     },
   };
 
@@ -164,13 +165,13 @@ export default function About() {
               {/* Bio Narrative */}
               <div className="text-slate-300 text-xs sm:text-sm leading-relaxed space-y-3 font-sans">
                 <p>
-                  I'm an <strong className="text-white font-semibold">AI & Python Backend Engineer</strong> who loves cinema, storytelling, and building systems that eliminate real engineering friction.
+                  I build software at the intersection of <strong className="text-white font-semibold">reliable backend infrastructure</strong> and <strong className="text-teal-300 font-semibold">generative intelligence</strong>. While many treat modern LLMs as standalone black boxes, I design hybrid systems where probabilistic AI reasoning is strictly bounded by deterministic schemas, strict validation (Pydantic v2), and normalized relational databases.
                 </p>
                 <p>
-                  I've always loved writing film scripts. When I noticed generic LLMs generated flat, repetitive scenes that drifted off-narrative after two beats, I built <span className="text-purple-300 font-medium">CineScript Studio</span> to solve my own creative frustration—using multi-tier vector retrieval to inject dramaturgical rules before generation.
+                  Over the past <span className="text-teal-300 font-medium font-semibold">2 years at Mirafra (working on-site with AMD)</span>, I have engineered internal RAG-driven triage assistants over 10,000+ historical error logs, silicon QoR analysis tools, and automated FPGA verification pipelines handling enterprise workloads.
                 </p>
                 <p>
-                  At <strong className="text-teal-300 font-semibold">Mirafra Technologies for client AMD</strong>, I bring that same intolerance for friction to backend architecture: automating high-throughput validation pipelines, building telemetry microservices, and developing intelligent log triage that classifies silicon errors automatically.
+                  My development journey is driven by a duality: rigorous backend engineering on one side, and human-centric interface design and narrative architecture on the other. Whether architecting <span className="text-purple-300 font-medium font-semibold">CineScript Studio</span> (an agentic multi-tier RAG platform), <span className="text-emerald-300 font-medium font-semibold">FinSafe AI</span> (a deterministic financial risk engine), or <span className="text-cyan-300 font-medium font-semibold">Pulse</span> (a zero-dependency browser stream engine rendering 10k+ logs at 60 FPS), I care intensely about resilient execution and high-craft UI.
                 </p>
               </div>
             </div>
@@ -312,7 +313,13 @@ export default function About() {
         {/* BENTO ROW 2: ULTRA-COMPACT INTERACTIVE ENGINEERING HUB     */}
         {/* (Eliminates giant vertical boxes; reduced height by 60%!) */}
         {/* ========================================================= */}
-        <div className="space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="space-y-4"
+        >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-1">
             <div>
               <span className="text-[11px] font-mono text-cyan-300 uppercase tracking-widest font-bold flex items-center gap-2">
@@ -548,12 +555,18 @@ export default function About() {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
 
         {/* ========================================================= */}
         {/* BOTTOM PHILOSOPHY BANNER                                  */}
         {/* ========================================================= */}
-        <div className="p-4 sm:p-5 rounded-2xl glacier-card border border-teal-500/20 bg-[#031518]/70 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-300">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="p-4 sm:p-5 rounded-2xl glacier-card border border-teal-500/20 bg-[#031518]/70 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-300"
+        >
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-teal-400 shadow-[0_0_8px_#2dd4bf]" />
             <span>
@@ -565,7 +578,7 @@ export default function About() {
             <span>● Hyderabad, India</span>
             <span>● Open to High-Impact Roles</span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
